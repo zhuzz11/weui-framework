@@ -1,0 +1,60 @@
+.orderContr .order-date{
+	background-color:#dddddd;
+	margin:0 5px;
+	border-radius:5px;
+}
+
+.orderContr .weui-navbar__item:active {
+    background-color: #ffffff;
+}
+
+.orderContr .date-button{
+	margin:0 5px;
+	border-radius:5px;
+	border:1px solid #dddddd;
+	font-size: 12px;
+}
+
+.orderContr .weui-navbar__item{
+	padding:0;
+	padding-top: 10px;
+}
+.orderContr .weui-tab__panel{
+	padding-top: 93px;
+}
+
+.orderContr .sub-nav{
+	margin-top: 10px;
+	border-top: 1px solid #CCCCCC;
+}
+
+.orderContr .sub-nav .weui-flex__item{
+	border-right:1px solid #cccccc;
+}
+
+.orderContr .desc{
+	width:auto;
+	display: block;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    word-wrap: break-word;
+    word-break: break-all;
+	margin-top: 15px
+}
+
+.orderContr .rigth-box{
+	margin-right: 0;
+	color: #999999;
+}
+
+.orderContr .weui-flex__item{
+	text-align: center;
+}
+
+.orderContr .weui-panel{
+	margin-top: 0;
+}
+.orderContr .weui-panel:before{
+	border-top: none;
+}

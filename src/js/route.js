@@ -11,7 +11,7 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
         .state('home', {
             cache: false,
             url: '/home',
-            title: "定损",
+            title: "home",
             templateUrl: 'view/template/home.html'
         });
 
@@ -19,7 +19,15 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
         .state('edit', {
             cache: false,
             url: '/edit',
-            title: "定损",
+            title: "买保险就是买服务",
             templateUrl: 'view/template/edit.html'
+        });
+
+    $stateProvider
+        .state('order', {
+            cache: false,
+            url: '/order',
+            title: "预约4S店",
+            templateUrl: 'view/template/order.html'
         });
 }]);
