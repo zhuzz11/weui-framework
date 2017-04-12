@@ -1,9 +1,13 @@
 .orderContr .order-date{
-	background-color:#dddddd;
+	background-color:#1AAD19;
 	margin:0 5px;
 	border-radius:5px;
+	color: #ffffff;
 }
 
+.orderContr .weui-navbar__item {
+    background-color: #fff;
+}
 .orderContr .weui-navbar__item:active {
     background-color: #ffffff;
 }

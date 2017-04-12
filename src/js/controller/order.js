@@ -16,8 +16,9 @@ angular.module("ctApp")
 			var initDate = function() {
 				var date = new Date();
 				for (var i = 0; i < 5; i++) {
-					date.setDate(i);
+					date.setDate(date.getDate() + i);
 					var w = date.getDay();
+					console.log(date.format("MM-dd"));
 					$scope.orderdate.push({
 						date: date.format("MM-dd"),
 						week: i == 0 ? "今天" : getWeek(w),
