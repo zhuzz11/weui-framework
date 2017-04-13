@@ -9,10 +9,10 @@
                             <div>{{item.week}}</div>
                         </div>
                     </div>
-                    <div class="weui-flex__item">
-                        <div class="placeholder date-button">
-                            <div>选择</div>
-                            <div>日期</div>
+                    <div class="weui-flex__item ">
+                        <div class="label">选择日期</div>
+                        <div class="date-input-box">
+                            <input type="date" ng-change="dateChange()" ng-model="pickdate"/>
                         </div>
                     </div>
                 </div>

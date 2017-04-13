@@ -60,17 +60,48 @@ body {
         	background-color: #1AAD19;
         }
     }
+    @dateBoxWidth: 50px;
     .weui-navbar__item {
         padding: 0;
+       
+        .label{
+            position: absolute;
+            height: 14px;
+            width: @dateBoxWidth;
+            line-height: 14px;
+            top: 0;
+            left: 5px;
+            text-align: center;
+            font-size: 12px;
+            
+        }
     }
-    .date-button {
+    .date-input-box {
+        width: @dateBoxWidth;
         margin: 0 5px;
+        margin-top: 14px;
+        overflow: hidden;
+        height: 22px;
         border-radius: 5px;
         border: 1px solid #dddddd;
         font-size: 12px;
+        
+        input[type='date']{
+            left: 0;
+            width: 80px;
+            height: 22px;
+            border: none;
+            font-size: 6px;
+            background-color: #ffffff;
+            text-align: center;
+            &:active{
+                background-color: #EDEDED;
+            }
+        }
+        
     }
     .weui-tab__panel {
-        padding-top: 90px;
+        padding-top: 80px;
     }
     .top-nav {
         background-color: #ffffff;
@@ -84,7 +115,7 @@ body {
         }
     }
     .sub-nav {
-        top: 66px;
+        top: 56px;
     }
     .desc {
         width: auto;
@@ -102,6 +133,8 @@ body {
     }
     .weui-flex__item {
         text-align: center;
+        font-size: 12px;
+         position: relative;
     }
     .weui-panel {
         margin-top: 0;
