@@ -4,8 +4,8 @@
 
 angular.module('ctApp').
     value('$apis', {
-    	getDamageOrder: {
-            url: '/ctbackend/rest/ctAppOrder/getLossOrder',
+    	getCarShpList: {
+            url: '/car/list',
             method: 'POST'
-        },
+        }
     });

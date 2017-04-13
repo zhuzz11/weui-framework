@@ -3,24 +3,22 @@ angular.module('ctApp').factory("apiRequest", [
     "$q",
     "$http",
     "$apis",
-    function ($q, $http, $apis ) {
+    "loading",
+    function ($q, $http, $apis, loading) {
         //var serverhost = "http://devweb20.chetong.net";
         //var serverhost = "http://localhost:8080";
         //var serverhost = "http://10.104.8.8:8080";
         var serverhost = "";
 
         var showLoadding = function (isShowLoadding, loaddingTitle) {
-            loaddingTitle = loaddingTitle ? loaddingTitle : "加载中...";
             if (isShowLoadding == undefined || isShowLoadding) {
-                /*$ionicLoading.show({
-                    template: '<ion-spinner icon="android"></ion-spinner><div class="title">' + loaddingTitle + '</div>'
-                });*/
+                loading.show(loaddingTitle);
             }
         };
 
         var hideLoadding = function (isShowLoadding) {
             if (isShowLoadding == undefined || isShowLoadding) {
-                //$ionicLoading.hide();
+                loading.hide();
             }
         };
 
@@ -53,7 +51,16 @@ angular.module('ctApp').factory("apiRequest", [
             }
         };
 
-        var send = function (params, body, loaddingTitle, isShowLoadding, key) {
+        var send = function (obj) {
+            if(typeof obj !== "object"){
+                obj = {};
+            }
+            var params = obj.params;
+            var body = obj.body;
+            var loaddingTitle = obj.loaddingTitle;
+            var isShowLoadding = obj.isShowLoadding;
+            var key = obj.key;
+
             var varThis = this;
             var defer = $q.defer();
             var url = (varThis.host ? varThis.host : serverhost) + makeApiUrl(varThis.url, params);
@@ -152,7 +159,11 @@ angular.module('ctApp').factory("apiRequest", [
             });
 
             angular.forEach(apis, function (item, key) {
-                $apis[key].send(item.params || null, item.body || null, null, null, key).then(
+                $apis[key].send({
+                    param:item.params,
+                    body:item.body,
+                    key:key
+                }).then(
                     function (ret) {
                         resutlt[ret.key] = ret.data;
                         if (++round === len) {

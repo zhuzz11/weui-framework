@@ -19,20 +19,22 @@ angular.module("ctApp")
                 label: "人气优先",
                 select: false
             }];
+
             $scope.choicePriority = function(item) {
                 angular.forEach($scope.navButtonList, function(item, i) {
                     item.select = false;
                 });
                 item.select = true;
-                //do something
+                getCarShop();
             };
+
             $scope.choiceDate = function(item) {
                 angular.forEach($scope.orderdate, function(item, i) {
                     item.select = false;
                 });
                 item.select = true;
                 $scope.pickdate = item.date;
-                //do something
+                getCarShop();
             };
 
             var isToday = function(d) {
@@ -60,6 +62,7 @@ angular.module("ctApp")
                         select: i === index ? true : false
                     });
                 }
+                $scope.choiceDate($scope.orderdate[index]);
 
             };
 
@@ -94,8 +97,13 @@ angular.module("ctApp")
 				$scope.oringinDate = $scope.pickdate;
 				
 			};
-			var initCarShop = function(){
-				for (var i = 0;i < 6; i++) {
+			var getCarShop = function(){
+                $apis.getCarShpList.send().then(function(data){
+                    //获取4s店列表
+                });
+                console.log("get");
+                $scope.carShopList = [];
+				for (var i = 0;i < 10; i++) {
 					$scope.carShopList.push({
 						name:"深圳宝源宝马4S店",
 						address:"深圳市福田区梅林街道北环大道7108号",
@@ -113,6 +121,6 @@ angular.module("ctApp")
 			};
 
             initDate(new Date());
-            initCarShop();
+            getCarShop();
         }
     ]);
