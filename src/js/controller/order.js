@@ -18,7 +18,6 @@ angular.module("ctApp")
 				for (var i = 0; i < 5; i++) {
 					date.setDate(date.getDate() + i);
 					var w = date.getDay();
-					console.log(date.format("MM-dd"));
 					$scope.orderdate.push({
 						date: date.format("MM-dd"),
 						week: i == 0 ? "今天" : getWeek(w),
@@ -30,25 +29,25 @@ angular.module("ctApp")
 				var w = "";
 				switch (d) {
 					case 0:
-						w = "周一";
+						w = "周日";
 						break;
 					case 1:
-						w = "周二";
+						w = "周一";
 						break;
 					case 2:
-						w = "周三";
+						w = "周二";
 						break;
 					case 3:
-						w = "周四";
+						w = "周三";
 						break;
 					case 4:
-						w = "周五";
+						w = "周四";
 						break;
 					case 5:
-						w = "周六";
+						w = "周五";
 						break;
 					case 6:
-						w = "周七";
+						w = "周六";
 						break;
 				}
 				return w;
