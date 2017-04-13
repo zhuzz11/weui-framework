@@ -6,7 +6,7 @@ angular.module("ctApp")
 		"$timeout",
 		function($scope, $state, $apis, $timeout) {
 			$scope.orderdate = [];
-
+			$scope.carShopList = [1,2,3,4,5,6];
 			$scope.choiceDate = function(item){
 				angular.forEach($scope.orderdate,function(item,i){
 					item.select = false;
