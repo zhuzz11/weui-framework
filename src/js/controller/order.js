@@ -8,7 +8,7 @@ angular.module("ctApp")
             $scope.orderdate = [];
             $scope.pickdate = new Date();
             $scope.oringinDate = new Date();
-            $scope.carShopList = [1, 2, 3, 4, 5, 6];
+            $scope.carShopList = [];
             $scope.navButtonList = [{
                 label: "距离优先",
                 select: true
@@ -94,7 +94,25 @@ angular.module("ctApp")
 				$scope.oringinDate = $scope.pickdate;
 				
 			};
+			var initCarShop = function(){
+				for (var i = 0;i < 6; i++) {
+					$scope.carShopList.push({
+						name:"深圳宝源宝马4S店",
+						address:"深圳市福田区梅林街道北环大道7108号",
+						distance:"902m",
+						icon:"/images/icon_nav_special.png",
+						select:i==0?true:false
+					});
+				};
+			};
+			$scope.choiceCarShop = function(item){
+				angular.forEach($scope.carShopList, function(item, i) {
+                    item.select = false;
+                });
+                item.select = true;
+			};
 
             initDate(new Date());
+            initCarShop();
         }
     ]);
