@@ -49,3 +49,7 @@ Date.prototype.format = function (format) {
     }
     return format;
 };
+
+Date.prototype.dateDiff = function(date){
+    return parseInt((this - date)/1000/60/60/24);
+};

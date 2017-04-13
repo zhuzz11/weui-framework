@@ -7,6 +7,7 @@ angular.module("ctApp")
         function($scope, $state, $apis, $timeout) {
             $scope.orderdate = [];
             $scope.pickdate = new Date();
+            $scope.oringinDate = new Date();
             $scope.carShopList = [1, 2, 3, 4, 5, 6];
             $scope.navButtonList = [{
                 label: "距离优先",
@@ -30,6 +31,7 @@ angular.module("ctApp")
                     item.select = false;
                 });
                 item.select = true;
+                $scope.pickdate = item.date;
                 //do something
             };
 
@@ -41,16 +43,21 @@ angular.module("ctApp")
                 return false;
             };
 
-            var initDate = function(d) {
+            var initDate = function(d,index) {
 				$scope.orderdate = [];
+				if(index === undefined){
+					index = 0;
+				}
                 for (var i = 0; i < 5; i++) {
                     var date = new Date(d.getFullYear(),d.getMonth(),d.getDate());
                     date.setDate(d.getDate() + i);
                     var w = date.getDay();
+
                     $scope.orderdate.push({
-                        date: date.format("MM-dd"),
+						date:date,
+                        datef: date.format("MM-dd"),
                         week: isToday(date) ? "今天" : getWeek(w),
-                        select: i == 0 ? true : false
+                        select: i === index ? true : false
                     });
                 }
 
@@ -61,11 +68,32 @@ angular.module("ctApp")
                 return weekArray[d];
             };
 
-            $scope.dateChange = function() {
-                console.log("change");
-                //weui.topTips('请填写正确的手机号码' + $scope.pickdate.format("yyyy-MM-dd"), 3000);
-                initDate($scope.pickdate);
-            };
+			$scope.dateChange = function() {
+				var today = new Date();
+				var diff = $scope.pickdate.dateDiff(today);
+
+				if (diff > 60) {
+					weui.topTips('请设置2个月以内的日期', 3000);
+					$scope.pickdate = $scope.oringinDate;
+					$scope.dateChange();
+					return;
+				}
+				if (diff < 0) {
+					weui.topTips('请设置有效日期', 3000);
+					$scope.pickdate = $scope.oringinDate;
+					initDate($scope.oringinDate);
+					return;
+				}
+				if(diff > 55){
+					today.setDate(today.getDate()+57);
+					initDate(today,(diff-60)+4);
+					$scope.oringinDate = $scope.pickdate;
+					return;
+				}
+				initDate($scope.pickdate);
+				$scope.oringinDate = $scope.pickdate;
+				
+			};
 
             initDate(new Date());
         }
