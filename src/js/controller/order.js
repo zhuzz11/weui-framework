@@ -7,15 +7,33 @@ angular.module("ctApp")
 		function($scope, $state, $apis, $timeout) {
 			$scope.orderdate = [];
 			$scope.carShopList = [1,2,3,4,5,6];
+			$scope.navButtonList = [{
+				label:"距离优先",
+				select:true
+			},{
+				label:"评价优先",
+				select:false
+			},{
+				label:"人气优先",
+				select:false
+			}];
+			$scope.choicePriority = function(item){
+				angular.forEach($scope.navButtonList,function(item,i){
+					item.select = false;
+				});
+				item.select = true;
+				//do something
+			};
 			$scope.choiceDate = function(item){
 				angular.forEach($scope.orderdate,function(item,i){
 					item.select = false;
 				});
 				item.select = true;
-			}
+				//do something
+			};
 			var initDate = function() {
-				var date = new Date();
 				for (var i = 0; i < 5; i++) {
+					var date = new Date();
 					date.setDate(date.getDate() + i);
 					var w = date.getDay();
 					$scope.orderdate.push({
@@ -24,34 +42,12 @@ angular.module("ctApp")
 						select: i == 0 ? true : false
 					});
 				}
-			}
+			};
+
+			var weekArray = ["周日","周一","周二","周三","周四","周五","周六"];
 			var getWeek = function(d) {
-				var w = "";
-				switch (d) {
-					case 0:
-						w = "周日";
-						break;
-					case 1:
-						w = "周一";
-						break;
-					case 2:
-						w = "周二";
-						break;
-					case 3:
-						w = "周三";
-						break;
-					case 4:
-						w = "周四";
-						break;
-					case 5:
-						w = "周五";
-						break;
-					case 6:
-						w = "周六";
-						break;
-				}
-				return w;
-			}
+				return weekArray[d];
+			};
 			initDate();
 		}
 	]);

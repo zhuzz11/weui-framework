@@ -46,11 +46,19 @@ body {
 
 .orderContr {
 	height: 100%;
-    .order-date {
-        background-color: #1AAD19;
+	.order-date {
         margin: 0 5px;
         border-radius: 5px;
+        &:active{
+        	background-color: #EDEDED;
+        }
+    }
+    .order-date-active {
+        background-color: #1AAD19;
         color: #ffffff;
+        &:active{
+        	background-color: #1AAD19;
+        }
     }
     .weui-navbar__item {
         padding: 0;

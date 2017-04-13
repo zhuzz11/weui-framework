@@ -4,7 +4,7 @@
             <div class="weui-navbar__item">
                 <div class="weui-flex">
                     <div class="weui-flex__item" ng-repeat="item in orderdate">
-                        <div class="placeholder" ng-class="{'order-date':item.select}" ng-click="choiceDate(item)">
+                        <div class="order-date" ng-class="{'order-date-active':item.select}" ng-click="choiceDate(item)">
                             <div>{{item.date}}</div>
                             <div>{{item.week}}</div>
                         </div>
@@ -19,9 +19,7 @@
             </div>
         </div>
         <div class="weui-navbar sub-nav">
-            <div class="weui-navbar__item weui-bar__item_on">距离优先</div>
-            <div class="weui-navbar__item">评价优先</div>
-            <div class="weui-navbar__item">人气优先</div>
+            <div class="weui-navbar__item" ng-repeat="item in navButtonList" ng-class="{'weui-bar__item_on':item.select}" ng-click="choicePriority(item)">{{item.label}}</div>
         </div>
         <div class="weui-tab__panel">
             <div class="weui-tab__content page-list">
