@@ -16,7 +16,7 @@ angular.module("ctApp")
 				carNo:""
 			}
 			$scope.choiceCar = function(){
-				
+
 			};
 
 			$scope.choiceSex = function(type){
@@ -34,6 +34,8 @@ angular.module("ctApp")
 			$scope.getMobileCode = function(){
 				if(/^\d{11}$/.test($scope.form.mobile)){
 					mobilecode.send($scope.form.mobile);
+				}else{
+					weui.topTips('请输入正确的手机号');
 				}
 			}
 			

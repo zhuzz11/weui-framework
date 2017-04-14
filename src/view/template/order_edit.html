@@ -22,14 +22,14 @@
             <div class="weui-cell__bd">
                 <span>粤B X3456N</span>
             </div>
-            <div class="weui-cell__ft" style="font-size: 17px;" ng-click="choiceCar()">选择</div>
+            <div class="weui-cell__ft" style="font-size: 17px;" ng-click="choiceCar()">更多</div>
         </div>
         <div class="weui-cell weui-cell_vcode">
             <div class="weui-cell__hd">
                 <label class="weui-label">联系人</label>
             </div>
             <div class="weui-cell__bd">
-                <input ng-model="form.name" required class="weui-input" type="text" placeholder="请输入姓名">
+                <input ng-model="form.name" required class="weui-input" type="text" placeholder="请输入姓名" emptyTips="请输入联系人姓名">
             </div>
             <div class="weui-cell__ft">
                 <img class="weui-vcode-img" ng-class="{'sex-active':form.sex==0}" src="./images/header.png" ng-click="choiceSex(0)">
@@ -60,6 +60,14 @@
             </div>
         </div>
     </div>
+
+    <div class="weui-flex ensure-box">
+            <div class="weui-flex__item"><div class="placeholder"><i class="weui-icon-success"></i>原厂保障</div></div>
+            <div class="weui-flex__item"><div class="placeholder"><i class="weui-icon-success"></i>保障无忧</div></div>
+            <div class="weui-flex__item"><div class="placeholder"><i class="weui-icon-success"></i>高性价比</div></div>
+            <div class="weui-flex__item"><div class="placeholder"><i class="weui-icon-success"></i>随时可退</div></div>
+        </div>
+
     <div class="weui-tabbar">
         <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on" ng-click="submit()">
             <p class="weui-tabbar__label" style="font-size: 16px;line-height: 2.0">下一步</p>
