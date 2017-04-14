@@ -107,7 +107,7 @@ angular.module("ctApp")
 				for (var i = 0;i < 10; i++) {
 					$scope.carShopList.push({
 						name:"深圳宝源宝马4S店",
-						address:"深圳市福田区梅林街道北环大道7108号,深圳市福田区梅林街道北环大道7108号",
+						address:"深圳市福田区梅林街道北环大道7108号",
 						distance:"902m",
 						icon:"/images/icon_nav_special.png",
 						select:i==0?true:false

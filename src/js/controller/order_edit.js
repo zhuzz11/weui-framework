@@ -42,7 +42,11 @@ angular.module("ctApp")
 			$scope.submit = function(){
 				weui.form.validate('#order-form', function(error) {
 					if (!error) {//hide-form
-						
+						var load = weui.loading("正在提交");
+						$timeout(function(){
+							load.hide();
+							$state.go("orderSuccess");
+						},1000);
 					}
 					// return true; // 当return true时，不会显示错误
 				});

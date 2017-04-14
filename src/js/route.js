@@ -37,4 +37,11 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
             title: "预约商家",
             templateUrl: 'view/template/order_edit.html'
         });
+    $stateProvider
+        .state('orderSuccess', {
+            cache: false,
+            url: '/order/success',
+            title: "预约成功",
+            templateUrl: 'view/template/order_success.html'
+        });
 }]);

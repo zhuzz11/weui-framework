@@ -1,0 +1,46 @@
+<div ng-controller="orderSuccess" class="order-success">
+    <div class="weui-panel top-panel">
+        <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" ng-src="{{shop.icon}}" alt="">
+        </div>
+        <div style="color:#09BB07"><i class="weui-icon-success-no-circle"></i>预约成功</div>
+        <a href="javascript:;" class="weui-btn weui-btn_plain-default cancel-button" style="width: 150px;">取消预约</a>
+    </div>
+    <div class="weui-panel no-top-line">
+        <div class="weui-cells__title">商家详细信息</div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__hd shop-hd">
+                    <label class="weui-label">店名：</label>
+                </div>
+                <div class="weui-cell__bd shop-bd">
+                    <span>{{shop.name}}</span>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd shop-hd">
+                    <label class="weui-label">地址：</label>
+                </div>
+                <div class="weui-cell__bd shop-bd">
+                    <span>{{shop.address}}</span>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd shop-hd">
+                    <label class="weui-label">项目：</label>
+                </div>
+                <div class="weui-cell__bd shop-bd">
+                    <span>{{shop.type}}</span>
+                </div>
+            </div>
+            <div class="weui-panel order-time">
+                <div class="weui-panel__bd">
+                    <div class="weui-media-box weui-media-box_text">
+                        <h4 class="weui-media-box__title">预约时间段：</h4>
+                        <p class="weui-media-box__desc">{{shop.date}}&nbsp&nbsp{{shop.time}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
