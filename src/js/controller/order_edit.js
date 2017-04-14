@@ -4,11 +4,12 @@ angular.module("ctApp")
 		"$state",
 		"$apis",
 		"$timeout",
+		"$interval",
 		"order",
 		"mobilecode",
-		function($scope, $state, $apis, $timeout, order, mobilecode) {
+		function($scope, $state, $apis, $timeout, $interval, order, mobilecode) {
 			$scope.order = order.get();
-			$scope.registed = false;
+			$scope.registed = true;
 			$scope.form = {
 				name:"",
 				mobile:$scope.registed ? "18565767510" : "",
@@ -31,9 +32,29 @@ angular.module("ctApp")
 				});
 			},2000);
 
+			$scope.sending = false;
+			$scope.timer = null;
+			$scope.second = 60;
 			$scope.getMobileCode = function(){
 				if(/^\d{11}$/.test($scope.form.mobile)){
-					mobilecode.send($scope.form.mobile);
+					if($scope.sending){
+						return;
+					}
+					$scope.sending = true;
+					mobilecode.send($scope.form.mobile,function(){
+						$scope.second = 60;
+						$scope.timer = $interval(function(){
+							if($scope.second>1){
+								$scope.second --;
+							}else{
+								$interval.cancel($scope.timer);
+								$scope.timer = null;
+							}
+						},1000);
+						$scope.sending = false;
+					},function(){
+						$scope.sending = false;
+					});
 				}else{
 					weui.topTips('请输入正确的手机号');
 				}
