@@ -1,5 +1,5 @@
 angular.module("ctApp")
-	.controller("edit", [
+	.controller("memberEdit", [
 		"$scope",
 		"$state",
 		"$apis",

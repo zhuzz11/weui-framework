@@ -16,11 +16,11 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
         });
 
     $stateProvider
-        .state('edit', {
+        .state('memberEdit', {
             cache: false,
             url: '/edit',
             title: "买保险就是买服务",
-            templateUrl: 'view/template/edit.html'
+            templateUrl: 'view/template/member_edit.html'
         });
 
     $stateProvider
