@@ -47,7 +47,11 @@ gulp.task('build:css', function (){
     gulp.src('src/css/lib/*', option)
         .pipe(gulp.dest(dist))
         .pipe(browserSync.reload({stream: true}));
-    gulp.src('src/css/*.css', option)
+    gulp.src('src/css/*.less', option)
+        .pipe(less().on('error', function (e){
+            console.error(e.message);
+            this.emit('end');
+        }))
         .pipe(postcss([autoprefixer(['iOS >= 7', 'Android >= 4.1'])]))
         .pipe(nano({
             zindex: false,
