@@ -22,14 +22,14 @@
             <div class="weui-cell__bd">
                 <span>粤B X3456N</span>
             </div>
-            <div class="weui-cell__ft" style="font-size: 17px;" ng-click="choiceCar()">更多</div>
+            <div class="weui-cell__ft" style="font-size: 14px;line-height:1.4;" ng-click="choiceCar()">更多</div>
         </div>
         <div class="weui-cell weui-cell_vcode">
             <div class="weui-cell__hd">
                 <label class="weui-label">联系人</label>
             </div>
             <div class="weui-cell__bd">
-                <input ng-model="form.name" required class="weui-input" type="text" placeholder="请输入姓名" emptyTips="请输入联系人姓名">
+                <input ng-model="form.name" required class="weui-input" type="text" placeholder="请输入联系人姓名" emptyTips="请输入联系人姓名">
             </div>
             <div class="weui-cell__ft">
                 <img class="weui-vcode-img" ng-if="form.sex==0" src="./images/header/man_active.jpg" ng-click="choiceSex(0)">

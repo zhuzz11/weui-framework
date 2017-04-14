@@ -11,7 +11,7 @@ angular.module("ctApp")
 				type:1,//0-保养，1-喷漆，2-美容，3-陪同协助
 				date:"2017-04-17",
 				time:"09:00-12:00",
-				icon:"/images/icon_nav_special.png"
+				icon:"/images/none.jpg"
 			};
 		}
 	]);
