@@ -32,8 +32,10 @@
                 <input ng-model="form.name" required class="weui-input" type="text" placeholder="请输入姓名" emptyTips="请输入联系人姓名">
             </div>
             <div class="weui-cell__ft">
-                <img class="weui-vcode-img" ng-class="{'sex-active':form.sex==0}" src="./images/header.png" ng-click="choiceSex(0)">
-                <img class="weui-vcode-img" ng-class="{'sex-active':form.sex==1}" src="./images/header.png" ng-click="choiceSex(1)">
+                <img class="weui-vcode-img" ng-if="form.sex==0" src="./images/header/man_active.jpg" ng-click="choiceSex(0)">
+                <img class="weui-vcode-img" ng-if="form.sex!=0" src="./images/header/man.jpg" ng-click="choiceSex(0)">
+                <img class="weui-vcode-img" ng-if="form.sex==1" src="./images/header/woman_active.jpg" ng-click="choiceSex(1)">
+                <img class="weui-vcode-img" ng-if="form.sex!=1" src="./images/header/woman.jpg" ng-click="choiceSex(1)">
             </div>
         </div>
         <div class="weui-cell" ng-if="registed">
