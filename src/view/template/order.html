@@ -43,19 +43,9 @@
                             <div class="weui-cell__bd order-text">4S店可预约时间段：</div>
                         </a>
                         <div class="weui-flex">
-                            <div class="weui-flex__item" ng-repeat="time in orderTimes">
+                            <div class="weui-flex__item" ng-repeat="time in item.times">
                                 <div class="placeholder">{{time}}</div>
-                            </div>
-                        </div>
-                        <div class="weui-flex">
-                            <div class="weui-flex__item">
-                                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" ng-click="order(item,1)">预定</a>
-                            </div>
-                            <div class="weui-flex__item">
-                                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_plain-default weui-btn_plain-disabled" ng-click="order(item,2)">预定</a>
-                            </div>
-                            <div class="weui-flex__item">
-                                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" ng-click="order(item,3)">预定</a>
+                                <a href="javascript:;" class="weui-btn weui-btn_mini" ng-class="{'weui-btn_plain-disabled':item.disableIndex == $index,'weui-btn_plain-default':item.disableIndex == $index,'weui-btn_primary':item.disableIndex != $index}" ng-click="order(item,$index)">预定</a>
                             </div>
                         </div>
                     </div>

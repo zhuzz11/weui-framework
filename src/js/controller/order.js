@@ -20,7 +20,6 @@ angular.module("ctApp")
                 label: "人气优先",
                 select: false
             }];
-            $scope.orderTimes = ["9:00-12:00","12:00-15:00","15:00-17:30"];
 
             $scope.choicePriority = function(item) {
                 angular.forEach($scope.navButtonList, function(item, i) {
@@ -66,7 +65,6 @@ angular.module("ctApp")
 
             };
 
-            
             var getWeek = function(date) {
                 var weekArray = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
                 return weekArray[date.getDay()];
@@ -109,8 +107,10 @@ angular.module("ctApp")
 						name:"深圳宝源宝马4S店",
 						address:"深圳市福田区梅林街道北环大道7108号",
 						distance:"902m",
-						icon:"/images/icon_nav_special.png",
-						select:i==0?true:false
+						icon:"/images/none.jpg",
+						select:i==0?true:false,
+                        times:["9:00-12:00","12:00-15:00","15:00-17:30"],
+                        disableIndex:1//不可预定的索引
 					});
 				};
 			};
@@ -122,7 +122,10 @@ angular.module("ctApp")
 			};
 
             $scope.order = function(item,index){
-                item.time = $scope.orderTimes[index-1];
+                if(index === item.disableIndex){
+                    return;
+                }
+                item.time = item.times[index];
                 item.date = $scope.pickdate.format("yyyy-MM-dd");
                 item.week = getWeek($scope.pickdate);
                 order.set(item);
