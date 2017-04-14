@@ -30,4 +30,11 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
             title: "预约4S店",
             templateUrl: 'view/template/order.html'
         });
+    $stateProvider
+        .state('orderEdit', {
+            cache: false,
+            url: '/order/edit',
+            title: "预约商家",
+            templateUrl: 'view/template/order_edit.html'
+        });
 }]);

@@ -43,25 +43,19 @@
                             <div class="weui-cell__bd order-text">4S店可预约时间段：</div>
                         </a>
                         <div class="weui-flex">
-                            <div class="weui-flex__item">
-                                <div class="placeholder">9:00-12:00</div>
-                            </div>
-                            <div class="weui-flex__item">
-                                <div class="placeholder">12:00-15:00</div>
-                            </div>
-                            <div class="weui-flex__item">
-                                <div class="placeholder">15:00-17:30</div>
+                            <div class="weui-flex__item" ng-repeat="time in orderTimes">
+                                <div class="placeholder">{{time}}</div>
                             </div>
                         </div>
                         <div class="weui-flex">
                             <div class="weui-flex__item">
-                                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary">预定</a>
+                                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" ng-click="order(item,1)">预定</a>
                             </div>
                             <div class="weui-flex__item">
-                                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_plain-default weui-btn_plain-disabled">预定</a>
+                                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_plain-default weui-btn_plain-disabled" ng-click="order(item,2)">预定</a>
                             </div>
                             <div class="weui-flex__item">
-                                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary">预定</a>
+                                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" ng-click="order(item,3)">预定</a>
                             </div>
                         </div>
                     </div>

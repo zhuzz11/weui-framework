@@ -7,5 +7,9 @@ angular.module('ctApp').
     	getCarShpList: {
             url: '/car/list',
             method: 'POST'
+        },
+        getCode:{
+        	url: '/mobile/code',
+            method: 'POST'
         }
     });
