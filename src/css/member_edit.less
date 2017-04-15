@@ -1,5 +1,5 @@
 
-#edit-form{
+.member-edit{
 	height: 100%;
 	overflow: auto;
 	.weui-label {
@@ -9,5 +9,41 @@
         width: 100%;
         border-radius: 0;
     }
+    .weui-cells_form{
+        font-size: 14px;
+        .weui-cell__ft{
+        	button{
+        		font-size: 14px;
+        		width: 108px;
+        	}
+        }
+    }
+    .slogan{
+    	text-align: center;
+    	font-size: 14px;
+    	color: #999999;
+    	margin: 20px 0;
+    }
+    .billboards{
+    	margin: 0 20px;
+    	.weui-flex__item{
+    		border-radius: 50%;
+    		width: 50px;
+    		height: 50px;
+    		border: 1px solid #999999;
+    		margin: 0 10px;
+    	}
+    }
+}
+#car-form{
+	&:after{
+		border-bottom: 0;
+	}
+}
+#mobile-form{
+	margin-top: 0;
+	&:before{
+		left: 15px;
+	}
 }
 
