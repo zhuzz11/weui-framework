@@ -9,7 +9,7 @@ angular.module("ctApp")
 		"mobilecode",
 		function($scope, $state, $apis, $timeout, $interval, order, mobilecode) {
 			$scope.order = order.get();
-			$scope.registed = true;
+			$scope.registed = false;
 			$scope.form = {
 				name:"",
 				mobile:$scope.registed ? "18565767510" : "",
