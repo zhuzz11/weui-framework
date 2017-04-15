@@ -42,5 +42,7 @@ Date.prototype.format = function (format) {
 };
 
 Date.prototype.dateDiff = function(date){
-    return parseInt((this - date)/1000/60/60/24);
+    var left = new Date(this.getFullYear(),this.getMonth(),this.getDate());
+    var right = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+    return parseInt((left - right)/1000/60/60/24);
 };

@@ -38,9 +38,8 @@ angular.module("ctApp")
                 getCarShop();
             };
 
-            var isToday = function(d) {
-                var date = new Date();
-                if (date.getFullYear() == d.getFullYear() && date.getMonth() == d.getMonth() && date.getDate() == d.getDate()) {
+            var sameDate = function(d1,d2) {
+                if (d1.getFullYear() == d2.getFullYear() && d1.getMonth() == d2.getMonth() && d1.getDate() == d2.getDate()) {
                     return true;
                 }
                 return false;
@@ -57,7 +56,7 @@ angular.module("ctApp")
                     $scope.orderdate.push({
                         date: date,
                         datef: date.format("MM-dd"),
-                        week: isToday(date) ? "今天" : getWeek(date),
+                        week: sameDate(date,new Date()) ? "今天" : getWeek(date),
                         select: i === index ? true : false
                     });
                 }
@@ -86,6 +85,10 @@ angular.module("ctApp")
                     onConfirm: function(result) {
                         var date = new Date(result[0], result[1] - 1, result[2]);
                         var today = new Date();
+                        if(sameDate(date,$scope.oringinDate)){
+                            return;
+                        }
+                        $scope.oringinDate = date;
                         var diff = date.dateDiff(today);
                         if (diff > 55) {
                             today.setDate(today.getDate() + 56);
