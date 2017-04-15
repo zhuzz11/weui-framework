@@ -9,6 +9,7 @@ var nano = require('gulp-cssnano');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var rename = require('gulp-rename');
+var replace = require('gulp-replace');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
 var pkg = require('./package.json');
@@ -30,6 +31,7 @@ var yargs = require('yargs')
 
 var option = {base: 'src'};
 var dist = __dirname + '/dist';
+var src = __dirname + '/src';
 
 gulp.task('build:assets', function (){
     gulp.src('src/images/**/*', option)
@@ -53,10 +55,10 @@ gulp.task('build:css', function (){
             this.emit('end');
         }))
         .pipe(postcss([autoprefixer(['iOS >= 7', 'Android >= 4.1'])]))
-        .pipe(nano({
+        /*.pipe(nano({//生成环境打开
             zindex: false,
             autoprefixer: false
-        }))
+        }))*/
         .pipe(gulp.dest(dist))
         .pipe(browserSync.reload({stream: true}));
 });
@@ -112,3 +114,36 @@ gulp.task('default', ['release'], function () {
     }
 });
 
+
+gulp.task('template:html', function (){
+    gulp.src('src/*.html', option)
+        .pipe(gulp.dest(dist))
+        .pipe(browserSync.reload({stream: true}));
+    gulp.src('src/view/**/*', option)
+        .pipe(gulp.dest(dist))
+        .pipe(browserSync.reload({stream: true}));
+});
+
+//用于快速生成模板js、css、html文件,免得每次都得手动生成（注意：执行gulp 命令需要全局安装gulp, npm install gulp -g.）
+// 参数说明
+//  -n: 文件名
+//  -cn: 文件内部controller的名字
+//使用说明 gulp template -n your-file-name -cn your-controller-name
+gulp.task('template', function () {
+    var filename = process.argv[4];
+    var controlname = process.argv[6];
+    console.log("filename:" + filename);
+    console.log("controlname:" + controlname);
+    gulp.src('src/tempfile/temp.html', option)
+        .pipe(rename(filename+".html"))
+        .pipe(replace("{{name}}",controlname))
+        .pipe(gulp.dest(src + "/view/template/"));
+    gulp.src('src/tempfile/temp.js', option)
+        .pipe(rename(filename+".js"))
+        .pipe(replace("{{name}}",controlname))
+        .pipe(gulp.dest(src + "/js/controller/"));
+    gulp.src('src/tempfile/temp.less', option)
+        .pipe(rename(filename+".less"))
+        .pipe(gulp.dest(src + "/css/"));
+    console.log("模板文件已经生成.");
+});
