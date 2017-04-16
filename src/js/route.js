@@ -18,7 +18,7 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
     $stateProvider
         .state('memberEdit', {
             cache: false,
-            url: '/edit',
+            url: '/member/edit',
             title: "买保险就是买服务",
             templateUrl: 'view/template/member_edit.html'
         });
@@ -26,7 +26,7 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
     $stateProvider
         .state('order', {
             cache: false,
-            url: '/order',
+            url: '/shop/list',
             title: "预约4S店",
             templateUrl: 'view/template/order.html'
         });
@@ -41,7 +41,14 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
         .state('orderSuccess', {
             cache: false,
             url: '/order/success',
-            title: "预约成功",
+            title: "预约信息",
             templateUrl: 'view/template/order_success.html'
+        });
+    $stateProvider
+        .state('memberDetail', {
+            cache: false,
+            url: '/member/detail',
+            title: "会员资料",
+            templateUrl: 'view/template/member_detail.html'
         });
 }]);

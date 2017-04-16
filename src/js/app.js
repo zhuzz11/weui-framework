@@ -10,7 +10,7 @@ angular.module("ctApp", ['ui.router'])
 
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
                 $rootScope.pageTitle = toState.title ? toState.title : fromState.title;
-
+                document.title = $rootScope.pageTitle;
             });
 
 

@@ -87,10 +87,18 @@ angular.module("ctApp")
 									setTimeout(function() {
 										loading.hide();
 										weui.toast('提交成功', 3000);
+										$state.go("memberDetail");
 									}, 1500);
 								}
 								// return true; // 当return true时，不会显示错误
 							});
+						}else{
+							var loading = weui.loading('提交中...');
+							setTimeout(function() {
+								loading.hide();
+								weui.toast('提交成功', 3000);
+								$state.go("memberDetail");
+							}, 1500);
 						}
 					}
 				});

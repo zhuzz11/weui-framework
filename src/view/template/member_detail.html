@@ -1,0 +1,43 @@
+<div ng-controller="memberDetail" class="member-detail">
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell weui-cell_access">
+            <div class="weui-cell__hd">
+                <label class="weui-label">车型：</label>
+            </div>
+            <div class="weui-cell__bd">
+                <span>{{form.carName}}</span>
+            </div>
+            <div class="weui-cell__ft" style="font-size: 14px;line-height:1.4;" ng-click="editCar()">编辑</div>
+        </div>
+
+        <div class="weui-cell weui-cell_access">
+            <div class="weui-cell__hd">
+                <label class="weui-label">手机号：</label>
+            </div>
+            <div class="weui-cell__bd">
+                <span>{{form.mobile}}</span>
+            </div>
+            <div class="weui-cell__ft" style="font-size: 14px;line-height:1.4;" ng-click="editMobile()">更换</div>
+        </div>
+        
+    </div>
+
+    <div class="slogan">
+	    <p>2000车主的最佳选择</p>
+	    <div class="weui-flex billboards">
+	        <div class="weui-flex__item">
+	            <div class="placeholder">免费理赔咨询</div>
+	        </div>
+	        <div class="weui-flex__item">
+	            <div class="placeholder">会员折扣</div>
+	        </div>
+	        <div class="weui-flex__item">
+	            <div class="placeholder">快速通道</div>
+	        </div>
+	    </div>
+    <div>
+    <div class="bottom-blank"></div>
+    <div class="weui-tabbar">
+        <a href="javascript:;" class="weui-btn weui-btn_primary submit-button" ng-click="submit()">选择服务</a>
+    </div>
+</div>
