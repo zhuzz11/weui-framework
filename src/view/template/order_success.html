@@ -5,6 +5,12 @@
         </div>
         <div style="color:#09BB07" ng-if="!shop.canceled">
             <i class="weui-icon-success-no-circle"></i>预约成功
+            <div class="count-time">
+                <span class="d"></span>
+                <span class="h"></span>
+                <span class="m"></span>
+                <span class="s"></span>
+            </div>
             <a href="javascript:;" class="weui-btn weui-btn_plain-default cancel-button" ng-class="{'weui-btn_plain-disabled':canceling}" ng-click="cancelOrder()">取消预约</a>
         </div>
         <div style="color:#F43530" ng-if="shop.canceled">

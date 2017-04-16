@@ -29,5 +29,16 @@ angular.module("ctApp")
 					load.hide();
 				},2000);
 			}
+
+			$timeout(function(){
+				$(".count-time").countTime({
+					text:"还剩：",
+					EndTime: $scope.shop.date + " " + $scope.shop.time.split("-")[0], //设置结束时间；
+					callback:function(){     //当时间结束时候回调的函数   
+						alert("时间到了")
+					},
+				});
+			},10);
+			
 		}
 	]);
