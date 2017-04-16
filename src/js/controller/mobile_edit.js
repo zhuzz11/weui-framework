@@ -12,19 +12,19 @@ angular.module("ctApp")
 				code:"",
 				sending:false,
 				timer:null,
-				second:60
+				second:0
 			}
 			$scope.newItem = {
 				mobile:"",
 				code:"",
 				sending:false,
 				timer:null,
-				second:60
+				second:0
 			}
 			//获取手机验证码
 			$scope.getMobileCode = function(type){
 				if(/^\d{11}$/.test($scope[type].mobile)){
-					if($scope[type].sending){
+					if($scope[type].sending || $scope[type].second>0){//正在发送或正在倒计时
 						return;
 					}
 					$scope[type].sending = true;
@@ -36,6 +36,7 @@ angular.module("ctApp")
 							}else{
 								$interval.cancel($scope[type].timer);
 								$scope[type].timer = null;
+								$scope[type].second = 0;
 							}
 						},1000);
 						$scope[type].sending = false;
@@ -47,6 +48,7 @@ angular.module("ctApp")
 							}else{
 								$interval.cancel($scope[type].timer);
 								$scope[type].timer = null;
+								$scope[type].second = 0;
 							}
 						},1000);
 						$scope[type].sending = false;

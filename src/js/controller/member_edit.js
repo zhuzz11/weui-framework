@@ -51,7 +51,7 @@ angular.module("ctApp")
 			$scope.second = 60;
 			$scope.getMobileCode = function(){
 				if(/^\d{11}$/.test($scope.data.mobile)){
-					if($scope.sending){
+					if($scope.sending || $scope.second > 0){
 						return;
 					}
 					$scope.sending = true;
@@ -63,6 +63,7 @@ angular.module("ctApp")
 							}else{
 								$interval.cancel($scope.timer);
 								$scope.timer = null;
+								$scope.second = 0;
 							}
 						},1000);
 						$scope.sending = false;

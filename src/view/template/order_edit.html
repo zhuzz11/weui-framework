@@ -54,8 +54,8 @@
                 <input ng-model="form.mobile" class="weui-input" type="tel" required pattern="^\d{11}$" maxlength="11" placeholder="请输入手机号" emptyTips="请输入手机号" notMatchTips="请输入正确的手机号">
             </div>
             <div class="weui-cell__ft">
-                <button class="weui-vcode-btn" ng-click="getMobileCode()" ng-if="!timer">获取验证码</button>
-                <button class="weui-vcode-btn" style="color:#999999;font-size:12px;" ng-if="timer">重新获取({{second}})s</button>
+                <button class="weui-vcode-btn send" ng-click="getMobileCode()" ng-if="!timer">获取验证码</button>
+                <button class="weui-vcode-btn resend" ng-if="timer">重新获取({{second}})s</button>
             </div>
         </div>
         <div class="weui-cell" ng-if="!registed">
