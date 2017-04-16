@@ -51,4 +51,11 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
             title: "会员资料",
             templateUrl: 'view/template/member_detail.html'
         });
+    $stateProvider
+        .state('mobileEdit', {
+            cache: false,
+            url: '/mobile/edit',
+            title: "修改手机号",
+            templateUrl: 'view/template/mobile_edit.html'
+        });
 }]);
