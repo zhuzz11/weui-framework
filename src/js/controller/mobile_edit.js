@@ -6,7 +6,7 @@ angular.module("ctApp")
 		"mobilecode",
 		"$interval",
 		function($scope, $state, $apis, mobilecode, $interval) {
-
+			$scope.verified = false;
 			$scope.oldItem = {
 				mobile:"",
 				code:"",
@@ -56,10 +56,28 @@ angular.module("ctApp")
 				}
 			}
 
-			weui.form.checkIfBlur('#mobile-edit-form');
+			setTimeout(function() {
+				weui.form.checkIfBlur('#mobile-old-form');
+			}, 1500);
+
+			$scope.verify = function(){
+				weui.form.validate('#mobile-old-form', function(error) {
+					if (!error) {//hide-form
+						var loading = weui.loading('提交中...');
+						setTimeout(function() {
+							loading.hide();
+							$scope.verified = true;
+							setTimeout(function() {
+								weui.form.checkIfBlur('#mobile-new-form');
+							}, 1500);
+						}, 1500);
+					}
+				});
+			};
+
 			//提交
-			$scope.submit = function() {
-				weui.form.validate('#mobile-edit-form', function(error) {
+			$scope.submit = function(type) {
+				weui.form.validate('#mobile-new-form', function(error) {
 					if (!error) {//hide-form
 						var loading = weui.loading('提交中...');
 						setTimeout(function() {
