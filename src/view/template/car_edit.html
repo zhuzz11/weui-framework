@@ -2,7 +2,7 @@
     <div class="weui-tab">
         <div class="weui-navbar">
             <div class="weui-navbar__item">
-                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary add-button">+新增</a>
+                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary add-button" ng-click="newCar()">+新增</a>
             </div>
         </div>
         <div class="weui-tab__panel">
@@ -15,9 +15,10 @@
                                 <div ng-if="!item.isDefault" ng-click="setDefault(item)">选择</div>
                             </div>
                             <div class="weui-media-box__bd">
-                                <h2 ng-if="!item.isEditing" class="weui-media-box__title">{{item.name}}</h2>
-                                <div ng-if="item.isEditing">
-                                	<input class="weui-input" placeholder="请输入车牌号"/>
+                                <h2 ng-if="!item.isEditing" class="weui-media-box__title">{{item.prefix}}{{item.suffix}}</h2>
+                                <div ng-if="item.isEditing" class="edit-cell">
+                                    <span ng-click="choiceArea(item)">{{item.prefix}}<label>&#9660</label></span>
+                                    <input class="weui-input" ng-model="item.suffix" placeholder="请输入车牌号" />
                                 </div>
                             </div>
                             <div class="weui-media-box__hd rigth-box">
@@ -30,6 +31,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="weui-grids" ng-if="areaShow">
+            <a href="javascript:;" class="weui-grid" ng-repeat="item in areaList">
+                <p class="weui-grid__label" ng-class="{'select':tempItem.prefix == item.name}" ng-click="choiceItem(item)">{{item.name}}</p>
+            </a>
         </div>
     </div>
 </div>
