@@ -17,7 +17,7 @@ angular.module("ctApp")
 				carNo:""
 			}
 			$scope.choiceCar = function(){
-
+				$state.go("carEdit");
 			};
 
 			$scope.choiceSex = function(type){
