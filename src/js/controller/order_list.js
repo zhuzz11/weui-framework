@@ -8,7 +8,7 @@ angular.module("ctApp")
 			$scope.orderList = [];
 
 			$scope.goOrderDetail = function(){
-				$state.go("orderSuccess");
+				$state.go("orderDetail");
 			};
 			var initOrderList = function(){
 				$scope.orderList = [];
