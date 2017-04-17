@@ -6,7 +6,7 @@ angular.module("ctApp")
 		function($scope, $state, $apis) {
 
 			$scope.form = {
-				carName:"宝马BWM 1 4.6L 自动VX-R 1232",
+				carNo:"粤B123NJ",
 				mobile:"18565767510"
 			};
 

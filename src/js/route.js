@@ -65,4 +65,11 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
             title: "我的预约列表",
             templateUrl: 'view/template/order_list.html'
         });
+    $stateProvider
+        .state('carEdit', {
+            cache: false,
+            url: '/car/edit',
+            title: "编辑车牌号",
+            templateUrl: 'view/template/car_edit.html'
+        });
 }]);
