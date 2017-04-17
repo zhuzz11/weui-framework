@@ -1,5 +1,5 @@
 <div ng-controller="orderList" class="order-list">
-    <div class="weui-panel weui-panel_access" ng-repeat="item in orderList">
+    <div class="weui-panel weui-panel_access" ng-repeat="item in orderList" ng-click="goOrderDetail()">
         <div class="weui-panel__bd">
             <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                 <div class="weui-media-box__hd">
@@ -7,7 +7,8 @@
                 </div>
                 <div class="weui-media-box__bd">
                     <h2 class="weui-media-box__title">{{item.name}}</h2>
-                    <p class="weui-media-box__desc desc">{{item.address}}</p>
+                    <p class="weui-media-box__desc">{{item.date}}<span>{{item.type}}</span></p>
+                    <p class="weui-media-box__desc desc">地址：{{item.address}}</p>
                 </div>
                 <div class="weui-media-box__hd rigth-box">
                     <div>{{item.state}}</div>

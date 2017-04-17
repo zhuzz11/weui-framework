@@ -1,13 +1,43 @@
 /**your common css here**/
 .order-list{
-	.desc {
-        width: auto;
+	height: 100%;
+	overflow: auto;
+	.weui-media-box__title{
+		font-size: 15px;
+	}
+	.weui-media-box__desc{
+		width: auto;
         display: block;
         text-overflow: ellipsis;
         white-space: nowrap;
         word-wrap: normal;
         word-wrap: break-word;
         word-break: break-all;
-        margin-top: 15px
+        margin-top: 5px;
+        span{
+        	padding: 0 3px;
+        	margin-left: 20px;
+        	background-color: #cccccc;
+        	color: #ffffff;
+        	font-size: 12px;
+        	line-height: 1;
+        }
+	}
+    .weui-panel{
+    	margin-top: 0;
+    	&:before{
+    		border-top: none;
+    	}
+    }
+    .rigth-box{
+    	margin-right: 0;
+    	div{
+    		font-size: 13px;
+    		height: 20px;
+    		line-height: 20px;
+    		margin-top: 20px;
+    		border: 1px solid #cccccc;
+    		border-radius: 5px;
+    	}
     }
 }
