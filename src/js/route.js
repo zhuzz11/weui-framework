@@ -28,7 +28,7 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
             cache: false,
             url: '/shop/list',
             title: "预约4S店",
-            templateUrl: 'view/template/order.html'
+            templateUrl: 'view/template/shop_list.html'
         });
     $stateProvider
         .state('orderEdit', {
@@ -57,5 +57,12 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
             url: '/mobile/edit',
             title: "修改手机号",
             templateUrl: 'view/template/mobile_edit.html'
+        });
+    $stateProvider
+        .state('orderList', {
+            cache: false,
+            url: '/order/list',
+            title: "我的预约列表",
+            templateUrl: 'view/template/order_list.html'
         });
 }]);
