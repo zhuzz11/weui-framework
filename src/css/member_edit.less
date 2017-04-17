@@ -1,39 +1,97 @@
-
-.member-edit{
-	height: 100%;
-	overflow: auto;
-	.weui-label {
+.member-edit {
+    height: 100%;
+    overflow: auto;
+    .weui-label {
         width: 65px;
     }
-    .slogan{
-        margin-top: 50px;
-        p{
+    .slogan {
+        margin-top: 95px;
+        overflow: hidden;
+        p {
             text-align: center;
             font-size: 14px;
             color: #999999;
             margin-bottom: 20px;
         }
+        .billboards {
+            height: 80px;
+            text-align: center;
+            float: left;
+            position: relative;
+            left: 50%;
+            .item {
+                position: relative;
+                float: left;
+                left: -50%;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                padding: 5px;
+                font-size: 12px;
+                border: 1px solid #999999;
+                margin: 0 10px;
+                &:first-child{
+                    div{
+                        line-height: 16px;
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
     }
-    .billboards{
-    	margin: 0 20px;
-    	.weui-flex__item{
-    		border-radius: 50%;
-    		width: 50px;
-    		height: 50px;
-    		border: 1px solid #999999;
-    		margin: 0 10px;
-    	}
+    .edit-cell {
+        white-space: nowrap;
+        span {
+            margin-right: 5px;
+        }
+        label {
+            color: #666666;
+            font-size: 13px;
+        }
     }
-}
-#car-form{
-	&:after{
-		border-bottom: 0;
-	}
-}
-#mobile-form{
-	margin-top: 0;
-	&:before{
-		left: 15px;
-	}
+    .weui-grids {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #DEDEDE;
+        padding: 5px 0;
+        z-index: 600;
+        .weui-grid {
+            width: 12.5%;
+            background-color: #DEDEDE;
+            padding: 3px 5px;
+            p {
+                padding: 10px 5px;
+                font-size: 12px;
+                background-color: #ffffff;
+                border-radius: 3px;
+                &.select {
+                    background-color: #cccccc;
+                }
+                &:active {
+                    background-color: #cccccc;
+                }
+            }
+            &:before {
+                border-right: none;
+            }
+            &:after {
+                border-bottom: none;
+            }
+        }
+    }
 }
 
+#car-form {
+    &:after {
+        border-bottom: 0;
+    }
+}
+
+#mobile-form {
+    margin-top: 0;
+    &:before {
+        left: 15px;
+    }
+}
