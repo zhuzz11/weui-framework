@@ -38,11 +38,11 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
             templateUrl: 'view/template/order_edit.html'
         });
     $stateProvider
-        .state('orderSuccess', {
+        .state('orderDetail', {
             cache: false,
-            url: '/order/success',
+            url: '/order/detail',
             title: "预约信息",
-            templateUrl: 'view/template/order_success.html'
+            templateUrl: 'view/template/order_detail.html'
         });
     $stateProvider
         .state('memberDetail', {

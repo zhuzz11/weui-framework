@@ -67,7 +67,7 @@ angular.module("ctApp")
 						var load = weui.loading("正在提交");
 						$timeout(function(){
 							load.hide();
-							$state.go("orderSuccess");
+							$state.go("orderDetail");
 						},1000);
 					}
 					// return true; // 当return true时，不会显示错误
