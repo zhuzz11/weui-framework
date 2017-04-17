@@ -22,6 +22,9 @@ angular.module("ctApp")
             };
             initAreaList();
             $scope.setDefault = function(item) {
+                if (item.isEditing) {
+                    return;
+                }
                 angular.forEach($scope.carNoList, function(item, i) {
                     item.isDefault = false;
                 });
@@ -40,6 +43,7 @@ angular.module("ctApp")
                 $scope.isEditing = true;
             };
             $scope.cancel = function(item) {
+                $scope.closeArea();
                 if (item.isNew) {
                     $scope.isEditing = false;
                     $scope.carNoList.splice(-1, 1);
@@ -58,15 +62,21 @@ angular.module("ctApp")
                 $scope.carNoList.push({
                     isDefault: false,
                     name: "",
+                    prefix: areas[0],
+                    suffix: "",
                     isEditing: true,
                     isNew: true
                 });
                 $scope.isEditing = true;
             };
 
-            $scope.choiceArea = function(item) {
+            $scope.openArea = function(item) {
                 $scope.tempItem = item;
                 $scope.areaShow = true;
+            };
+
+            $scope.closeArea = function(item) {
+                $scope.areaShow = false;
             };
 
             $scope.choiceItem = function(item) {
@@ -79,8 +89,8 @@ angular.module("ctApp")
                     $scope.carNoList.push({
                         isDefault: i === 0 ? true : false,
                         name: "粤B123NJ",
-                        prefix:"粤",
-                        suffix:"B123NJ",
+                        prefix: "粤",
+                        suffix: "B123NJ",
                         isEditing: false
                     });
                 }
