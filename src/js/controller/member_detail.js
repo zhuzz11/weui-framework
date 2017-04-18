@@ -15,7 +15,7 @@ angular.module("ctApp")
 			};
 
 			$scope.editMobile = function(){
-				$state.go("mobileEdit");
+				$state.go("mobileVerify");
 			};
 
 			$scope.submit = function(){

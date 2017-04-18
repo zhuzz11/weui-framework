@@ -1,5 +1,5 @@
 angular.module("ctApp")
-	.controller("mobileEdit", [
+	.controller("mobileVerify", [
 		"$scope",
 		"$state",
 		"$apis",
@@ -8,13 +8,14 @@ angular.module("ctApp")
 		"$timeout",
 		function($scope, $state, $apis, mobilecode, $interval, $timeout) {
 
-			$scope.newItem = {
-				mobile:"",
+			$scope.oldItem = {
+				mobile:"18565767510",
 				code:"",
 				sending:false,
 				timer:null,
 				second:0
 			}
+
 			//获取手机验证码
 			$scope.getMobileCode = function(type){
 				if(/^\d{11}$/.test($scope[type].mobile)){
@@ -53,21 +54,20 @@ angular.module("ctApp")
 			}
 
 			$timeout(function() {
-				weui.form.checkIfBlur('#mobile-new-form');
+				weui.form.checkIfBlur('#mobile-old-form');
 			}, 1500);
 
-			//提交
-			$scope.submit = function(type) {
-				weui.form.validate('#mobile-new-form', function(error) {
+			$scope.verify = function(){
+				weui.form.validate('#mobile-old-form', function(error) {
 					if (!error) {//hide-form
 						var loading = weui.loading('提交中...');
 						$timeout(function() {
 							loading.hide();
-							weui.toast('修改成功', 3000);
-							$state.go("memberDetail");
+							$state.go("mobileEdit");
 						}, 1500);
 					}
 				});
-			}
+			};
+
 		}
 	]);
