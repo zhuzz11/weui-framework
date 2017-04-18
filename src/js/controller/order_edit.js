@@ -15,7 +15,7 @@ angular.module("ctApp")
 				mobile:$scope.registed ? "18565767510" : "",
 				sex:0,//0-男,1-女
 				carNo:""
-			}
+			};
 			$scope.choiceCar = function(){
 				$state.go("carEdit");
 			};
@@ -24,10 +24,12 @@ angular.module("ctApp")
 				$scope.form.sex = type;
 			};
 
+			var reg_mobile = /^\d{11}$/;
+
 			$timeout(function(){
-				weui.form.checkIfBlur('#order-form', {
+				weui.form.checkIfBlur('#order-edit-page-form', {
 					regexp: {
-						MOBILE: /^[0-9]{11}$/
+						MOBILE: reg_mobile
 					}
 				});
 			},2000);
@@ -36,33 +38,48 @@ angular.module("ctApp")
 			$scope.timer = null;
 			$scope.second = 0;
 			$scope.getMobileCode = function(){
-				if(/^\d{11}$/.test($scope.form.mobile)){
-					if($scope.sending || $scope.second > 0){
-						return;
-					}
-					$scope.sending = true;
-					mobilecode.send($scope.form.mobile,function(){
-						$scope.second = 60;
-						$scope.timer = $interval(function(){
-							if($scope.second>1){
-								$scope.second --;
-							}else{
-								$interval.cancel($scope.timer);
-								$scope.timer = null;
-								$scope.second = 0;
-							}
-						},1000);
-						$scope.sending = false;
-					},function(){
-						$scope.sending = false;
-					});
-				}else{
-					weui.topTips('请输入正确的手机号');
+				var mobile = $("#order-edit-page-mobile").val();
+				if(mobile == ""){
+					weui.topTips('请输入手机号');
+					return;
 				}
-			}
+				if (!reg_mobile.test(mobile)) {
+					weui.topTips('手机号格式不正确');
+					return;
+				}
+				if($scope.sending || $scope.second > 0){
+					return;
+				}
+				$scope.sending = true;
+				mobilecode.send(mobile,function(){
+					$scope.second = 60;
+					$scope.timer = $interval(function(){
+						if($scope.second>1){
+							$scope.second --;
+						}else{
+							$interval.cancel($scope.timer);
+							$scope.timer = null;
+							$scope.second = 0;
+						}
+					},1000);
+					$scope.sending = false;
+				},function(){
+					$scope.second = 10;
+					$scope.timer = $interval(function(){
+						if($scope.second>1){
+							$scope.second --;
+						}else{
+							$interval.cancel($scope.timer);
+							$scope.timer = null;
+							$scope.second = 0;
+						}
+					},1000);
+					$scope.sending = false;
+				});
+			};
 			
 			$scope.submit = function(){
-				weui.form.validate('#order-form', function(error) {
+				weui.form.validate('#order-edit-page-form', function(error) {
 					if (!error) {//hide-form
 						var load = weui.loading("正在提交");
 						$timeout(function(){
@@ -71,6 +88,10 @@ angular.module("ctApp")
 						},1000);
 					}
 					// return true; // 当return true时，不会显示错误
+				},{
+					regexp: {
+						MOBILE: reg_mobile
+					}
 				});
 			};
 		}
