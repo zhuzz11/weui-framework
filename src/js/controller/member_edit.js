@@ -13,41 +13,17 @@ angular.module("ctApp")
 				code: ""
 			};
 
-			var areas = ["京", "沪", "浙", "苏", "粤", "鲁", "晋", "冀", "豫", "川", "渝", "辽", "吉", "黑", "皖", "鄂", "湘", "赣", "闽", "陕", "甘", "宁", "蒙", "津", "贵", "云", "桂", "琼", "青", "新", "藏", "台"];
-			$scope.areaList = [];
-			$scope.prefix = areas[0];
+			var reg_CAR = /^[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/,
+				reg_MOBILE = /^\d{11}$/;
 
-			var initAreaList = function() {
-				for (var i = 0; i < areas.length; i++) {
-					$scope.areaList.push({
-						name: areas[i]
-					});
-				}
-			};
-			initAreaList();
-
-			$scope.openArea = function(item) {
-				$scope.areaShow = true;
-			};
-
-			$scope.closeArea = function(item) {
-				$scope.areaShow = false;
-			};
-
-			$scope.choiceItem = function(item) {
-				$scope.areaShow = false;
-				$scope.prefix = item.name;
-			};
-
-			weui.form.checkIfBlur('#mobile-form', {
+			weui.form.checkIfBlur('#member-edit-page-form2', {
 				regexp: {
-					MOBILE: /^\d{11}$/,
-					CODE: /^\d{4}$/
+					MOBILE: reg_MOBILE
 				}
 			});
-			weui.form.checkIfBlur('#car-form', {
+			weui.form.checkIfBlur('#member-edit-page-form1', {
 				regexp: {
-					CAR: /^[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/
+					CAR: reg_CAR
 				}
 			});
 
@@ -56,13 +32,13 @@ angular.module("ctApp")
 			$scope.timer = null;
 			$scope.second = 0;
 			$scope.getMobileCode = function() {
-				var mobile = $("#mobile").val();
+				var mobile = $("#member-edit-page-mobile").val();
 				if(mobile == ""){
 					weui.topTips('请输入手机号');
 					return;
 				}
 				$scope.data.mobile = mobile; //这里需要取得值，不然会得到undefined，未知原因？。
-				if (/^\d{11}$/.test($scope.data.mobile)) {
+				if (reg_MOBILE.test($scope.data.mobile)) {
 					if ($scope.sending || $scope.second > 0) {
 						return;
 					}
@@ -95,16 +71,16 @@ angular.module("ctApp")
 				} else {
 					weui.topTips('手机号格式不正确');
 				}
-			}
+			};
 
 			//提交
 			$scope.submit = function() {
-				weui.form.validate('#car-form', function(error) {
+				weui.form.validate('#member-edit-page-form1', function(error) {
 					if (!error) { //hide-form
-						var mobile = $("#mobile").val();
+						var mobile = $("#member-edit-page-mobile").val();
 						$scope.data.mobile = mobile; //这里需要取得值，不然会得到undefined，未知原因？。
 						if ("" !== $scope.data.mobile) {
-							weui.form.validate('#mobile-form', function(error) {
+							weui.form.validate('#member-edit-page-form2', function(error) {
 								if (!error) {
 									var loading = weui.loading('提交中...');
 									setTimeout(function() {
@@ -115,8 +91,7 @@ angular.module("ctApp")
 								}
 							}, {
 								regexp: {
-									MOBILE: /^\d{11}$/,
-									CODE: /^\d{4}$/
+									MOBILE: reg_MOBILE
 								}
 							});
 						} else {
@@ -130,9 +105,35 @@ angular.module("ctApp")
 					}
 				}, {
 					regexp: {
-						CAR: /^[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/
+						CAR: reg_CAR
 					}
 				});
-			}
+			};
+
+			var areas = ["京", "沪", "浙", "苏", "粤", "鲁", "晋", "冀", "豫", "川", "渝", "辽", "吉", "黑", "皖", "鄂", "湘", "赣", "闽", "陕", "甘", "宁", "蒙", "津", "贵", "云", "桂", "琼", "青", "新", "藏", "台"];
+			$scope.areaList = [];
+			$scope.prefix = areas[0];
+
+			var initAreaList = function() {
+				for (var i = 0; i < areas.length; i++) {
+					$scope.areaList.push({
+						name: areas[i]
+					});
+				}
+			};
+			initAreaList();
+
+			$scope.openArea = function(item) {
+				$scope.areaShow = true;
+			};
+
+			$scope.closeArea = function(item) {
+				$scope.areaShow = false;
+			};
+
+			$scope.choiceItem = function(item) {
+				$scope.areaShow = false;
+				$scope.prefix = item.name;
+			};
 		}
 	]);
