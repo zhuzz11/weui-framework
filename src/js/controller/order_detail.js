@@ -28,7 +28,7 @@ angular.module("ctApp")
 					$scope.shop.canceled = true;
 					load.hide();
 				},2000);
-			}
+			};
 
 			$timeout(function(){
 				var date = $scope.shop.date.split("-");

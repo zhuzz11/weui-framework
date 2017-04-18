@@ -4,7 +4,7 @@
             <div class="weui-cell__hd"><label class="weui-label">车牌号</label></div>
             <div class="weui-cell__bd edit-cell">
                 <span ng-click="openArea(item)">{{prefix}}<label>&#9660</label></span>
-                <input ng-model="data.carNo" id="member-edit-page-car" class="weui-input" required pattern="REG_CAR" type="text" placeholder="请输入车牌号" emptyTips="请输入车牌号" notMatchTips="车牌号格式不正确">
+                <input id="member-edit-page-car" class="weui-input" required pattern="REG_CAR" type="text" placeholder="请输入车牌号" emptyTips="请输入车牌号" notMatchTips="车牌号格式不正确">
             </div>
         </div>
     </div>
@@ -12,7 +12,7 @@
         <div class="weui-cell weui-cell_vcode">
             <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
             <div class="weui-cell__bd">
-                <input ng-model="data.mobile" id="member-edit-page-mobile" required pattern="REG_MOBILE" class="weui-input" type="tel" maxlength="11" placeholder="请输入手机号" notMatchTips="手机号格式不正确">
+                <input id="member-edit-page-mobile" required pattern="REG_MOBILE" class="weui-input" type="tel" maxlength="11" placeholder="请输入手机号" notMatchTips="手机号格式不正确">
             </div>
             <div class="weui-cell__ft">
                 <button class="weui-vcode-btn send" ng-click="getMobileCode()" ng-if="!timer">获取验证码</button>

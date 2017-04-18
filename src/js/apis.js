@@ -3,6 +3,10 @@
  */
 
 angular.module('ctApp').value('$apis', {
+	userBind:{
+		url: '/user/bind',
+		method: 'POST'
+	},
 	getCarShpList: {
 		url: '/car/list',
 		method: 'POST'
