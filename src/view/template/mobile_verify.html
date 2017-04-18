@@ -1,12 +1,12 @@
 <div ng-controller="mobileVerify" class="mobile-verify">
-    <div class="weui-cells weui-cells_form" id="mobile-old-form">
+    <div class="weui-cells weui-cells_form" id="mobile-verify-page-form">
         <div class="weui-cell weui-cell_vcode">
             <div class="weui-cell__hd"><label class="weui-label">原手机号</label></div>
             <div class="weui-cell__bd">
                 <input id="mobile-verify-page-mobile" required pattern="REG_MOBILE" class="weui-input" type="tel" maxlength="11" disabled placeholder="请输入原手机号" notMatchTips="手机号格式不正确">
             </div>
             <div class="weui-cell__ft">
-                <button class="weui-vcode-btn send" ng-click="getMobileCode('oldItem')" ng-if="!oldItem.timer">获取验证码</button>
+                <button class="weui-vcode-btn send" ng-click="getMobileCode()" ng-if="!oldItem.timer">获取验证码</button>
                 <button class="weui-vcode-btn resend" ng-if="oldItem.timer">重新获取({{oldItem.second}})s</button>
             </div>
         </div>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="tips">
-        <i class="weui-icon-info weui-icon_msg"></i><label>原手机号不能接收短信？拨打4000200001客服电话</label>
+        <i class="weui-icon-info-circle"></i><label>原手机号不能接收短信？拨打4000200001客服电话</label>
     </div>
 
     <div class="submit-button">
