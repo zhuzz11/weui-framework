@@ -4,12 +4,9 @@
 	.top-panel{
 		text-align: center;
 		padding: 10px 0;
-        img{
-            height: 60px;
-        }
+        padding-top: 30px;
         i{
-            font-size: 18px;
-            line-height: 1.2;
+            font-size: 80px;
         }
 	}
     .shop-hd {
@@ -52,14 +49,18 @@
     	&:before{
     		border-top: none;
     	}
+        &:after{
+            border-bottom: none;
+        }
     }
-    .weui-panel.no-top-line{
-    	&:after{
-    		border-bottom: none;
-    	}
-    }
-    .count-time{
-        height: 30px;
+    .count-time,.cancel-time{
         color: #999999;
+        font-size: 12px;
+    }
+    .state-label{
+        margin-top: 20px;
+        margin-bottom: 5px;
+        color:#333333;
+        font-weight: 400;
     }
 }

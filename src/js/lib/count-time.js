@@ -13,8 +13,8 @@
 				},
 				getTimes:function(m,callback){
 					var NowTime = new Date();
-					var EndTime = new Date(m.options.EndTime)		
-					m.t =EndTime-NowTime  ;	 		
+					var EndTime = m.options.EndTime;		
+					m.t =EndTime-NowTime;	 		
 					m.d = Math.floor(m.t/1000/60/60/24);
 					m.h = Math.floor(m.t/1000/60/60%24);
 					m.m = Math.floor(m.t/1000/60%60);
@@ -26,7 +26,7 @@
 								  
 				   if(NowTime >= EndTime){ 
 				   	  	clearInterval(m.time)
-						$(m.arr[0]).text("0"+"0"+ "天");
+						$(m.arr[0]).text(m.options.text + "0"+"0"+ "天");
 						$(m.arr[1]).text("0"+"0"+ "时");
 						$(m.arr[2]).text("0"+"0"+ "分")
 						$(m.arr[3]).text("0"+"0"+ "秒");

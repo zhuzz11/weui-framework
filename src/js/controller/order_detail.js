@@ -11,7 +11,7 @@ angular.module("ctApp")
 				address:"深圳市福田区梅林街道北环大道7108号",
 				type:types[1],//0-保养，1-喷漆，2-美容，3-陪同协助
 				date:"2017-04-19",
-				time:"09:00-12:00",
+				time:"19:00-12:00",
 				icon:"/images/none.jpg",
 				canceled:false
 			};
@@ -31,11 +31,13 @@ angular.module("ctApp")
 			}
 
 			$timeout(function(){
+				var date = $scope.shop.date.split("-");
+				var time = $scope.shop.time.split("-")[0].split(":");
 				$(".count-time").countTime({
 					text:"还剩：",
-					EndTime: $scope.shop.date + " " + $scope.shop.time.split("-")[0], //设置结束时间；
+					EndTime: new Date(date[0],date[1]-1,date[2],time[0],time[1]), //设置结束时间；
 					callback:function(){     //当时间结束时候回调的函数   
-						alert("时间到了")
+						
 					},
 				});
 			},10);
