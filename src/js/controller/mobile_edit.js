@@ -5,7 +5,8 @@ angular.module("ctApp")
 		"$apis",
 		"mobilecode",
 		"$interval",
-		function($scope, $state, $apis, mobilecode, $interval) {
+		"$timeout",
+		function($scope, $state, $apis, mobilecode, $interval, $timeout) {
 			$scope.verified = false;
 			$scope.oldItem = {
 				mobile:"",
@@ -66,10 +67,10 @@ angular.module("ctApp")
 				weui.form.validate('#mobile-old-form', function(error) {
 					if (!error) {//hide-form
 						var loading = weui.loading('提交中...');
-						setTimeout(function() {
+						$timeout(function() {
 							loading.hide();
 							$scope.verified = true;
-							setTimeout(function() {
+							$timeout(function() {
 								weui.form.checkIfBlur('#mobile-new-form');
 							}, 1500);
 						}, 1500);
@@ -82,7 +83,7 @@ angular.module("ctApp")
 				weui.form.validate('#mobile-new-form', function(error) {
 					if (!error) {//hide-form
 						var loading = weui.loading('提交中...');
-						setTimeout(function() {
+						$timeout(function() {
 							loading.hide();
 							weui.toast('修改成功', 3000);
 							$state.go("memberDetail");
