@@ -54,7 +54,7 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
     $stateProvider
         .state('mobileVerify', {
             cache: false,
-            url: '/mobile/verify',
+            url: '/mobile/verify/:mobile',
             title: "验证手机号",
             templateUrl: 'view/template/mobile_verify.html'
         });
