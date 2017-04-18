@@ -15,38 +15,64 @@ ul {
     list-style: none;
 }
 
-
-.bottom-blank{
-	height: 46px;
+.bottom-blank {
+    height: 46px;
 }
 
-.weui-tabbar{
-	.submit-button{
-		width: 100%;
-        border-radius: 0;
-	}
+.submit-button {
+    margin: 0 10px;
+    margin-top: 30px;
 }
 
-.weui-cells_form{
-    font-size: 14px;
-    .weui-cell__ft{
-    	button.weui-vcode-btn{
-    		font-size: 14px;
-    		width: 108px;
-    		height: 40px;
-    		
-    	}
-    	button.send{
-    		&:active{
-    			background-color: #ECECEC;
-    		}
-    	}
-    	button.resend{
-    		color:#999999;
-    		font-size:12px;
-    		&:active{
-    			background-color: transparent;
-    		}
-    	}
+.weui-cells_form {
+    .weui-cell__ft {
+        button.weui-vcode-btn {
+            width: 110px;
+        }
+        button.send {
+            &:active {
+                background-color: #ECECEC;
+            }
+        }
+        button.resend {
+            color: #999999;
+            font-size: 13px;
+            &:active {
+                background-color: transparent;
+            }
+        }
+    }
+}
+
+.weui-grids.area-keyboard {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #DEDEDE;
+    padding: 5px 0;
+    z-index: 600;
+    .weui-grid {
+        width: 12.5%;
+        background-color: #DEDEDE;
+        padding: 3px 5px;
+        p {
+            padding: 10px 5px;
+            font-size: 12px;
+            background-color: #ffffff;
+            border-radius: 3px;
+            box-shadow: 0px 2px 1px #aaaaaa;
+            &.select {
+                background-color: #cccccc;
+            }
+            &:active {
+                background-color: #cccccc;
+            }
+        }
+        &:before {
+            border-right: none;
+        }
+        &:after {
+            border-bottom: none;
+        }
     }
 }
