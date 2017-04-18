@@ -7,6 +7,10 @@ angular.module('ctApp').value('$apis', {
 		url: '/user/bind',
 		method: 'POST'
 	},
+	userInfo:{
+		url: '/user/info',
+		method: 'POST'
+	},
 	getCarShpList: {
 		url: '/car/list',
 		method: 'POST'
