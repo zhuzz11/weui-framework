@@ -99,25 +99,35 @@ angular.module("ctApp")
 
 			$scope.submitBody = function(carNo,mobile,code) {
 				
-				/*$apis.userBind.send({
+				$apis.userBind.send({
 					loaddingTitle: "提交中...",
 					body: {
 						mobile: mobile,
 						carNo: carNo,
-						code:code
+						openId: "?"
 					}
 				}).then(function(data) {
-					weui.toast('提交成功', 3000);
-					$state.go("memberDetail");
+					if(data && data.resultCode == "0000"){
+						weui.toast('提交成功', 2000);
+						$state.go("memberDetail",{
+							id:data.resultObject.idUser
+						});
+					}else{
+						weui.toast(data.resultMsg, 3000);
+					}
+					
 				}, function(err) {
 					weui.topTips("提交失败");
-				});*/
+				});
 
+				//测试代码
 				var loading = weui.loading('提交中...');
 				setTimeout(function() {
 					loading.hide();
 					weui.toast('提交成功', 3000);
-					$state.go("memberDetail");
+					$state.go("memberDetail",{
+							id:123456
+						});
 				}, 1500);
 			};
 
@@ -138,12 +148,17 @@ angular.module("ctApp")
 				$scope.areaShow = true;
 			};
 
-			$scope.closeArea = function(item) {
-				$scope.areaShow = false;
+			$scope.closeArea = function() {
+				var divs = $("#member-edit-page-area-keyboard").find("div");
+				$(divs[0]).addClass("weui-animate-fade-out");
+				$(divs[1]).addClass("weui-animate-slide-down");
+				$timeout(function() {
+					$scope.areaShow = false;
+				}, 350);
 			};
 
 			$scope.choiceItem = function(item) {
-				$scope.areaShow = false;
+				$scope.closeArea();
 				$scope.prefix = item.name;
 			};
 		}

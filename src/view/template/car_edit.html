@@ -32,10 +32,13 @@
                 </div>
             </div>
         </div>
-        <div class="weui-grids area-keyboard" ng-if="areaShow">
-            <a href="javascript:;" class="weui-grid" ng-repeat="item in areaList">
-                <p class="weui-grid__label" ng-class="{'select':tempItem.prefix == item.name}" ng-click="choiceItem(item)">{{item.name}}</p>
-            </a>
+        <div ng-if="areaShow" id="car-edit-page-area-keyboard">
+            <div class="weui-mask weui-animate-fade-in" ng-click="closeArea()"></div>
+            <div class="weui-grids area-keyboard weui-animate-slide-up">
+                <a href="javascript:;" class="weui-grid" ng-repeat="item in areaList">
+                    <p class="weui-grid__label" ng-class="{'select':tempItem.prefix == item.name}" ng-click="choiceItem(item)">{{item.name}}</p>
+                </a>
+            </div>
         </div>
     </div>
 </div>

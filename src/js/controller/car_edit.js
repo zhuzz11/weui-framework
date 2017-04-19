@@ -3,7 +3,8 @@ angular.module("ctApp")
         "$scope",
         "$state",
         "$apis",
-        function($scope, $state, $apis) {
+        "$timeout",
+        function($scope, $state, $apis, $timeout) {
 
             $scope.carNoList = [];
             $scope.areaShow = false;
@@ -75,12 +76,17 @@ angular.module("ctApp")
                 $scope.areaShow = true;
             };
 
-            $scope.closeArea = function(item) {
-                $scope.areaShow = false;
+            $scope.closeArea = function() {
+                var divs = $("#car-edit-page-area-keyboard").find("div");
+                $(divs[0]).addClass("weui-animate-fade-out");
+                $(divs[1]).addClass("weui-animate-slide-down");
+                $timeout(function() {
+                    $scope.areaShow = false;
+                }, 350);
             };
 
             $scope.choiceItem = function(item) {
-                $scope.areaShow = false;
+                $scope.closeArea();
                 $scope.tempItem.prefix = item.name;
             };
 

@@ -47,10 +47,20 @@ ul {
 .weui-grids.area-keyboard {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
+    z-index: 5000;
     background-color: #DEDEDE;
     padding: 5px 0;
-    z-index: 600;
+    /**
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translate(0, 100%);
+    transform: translate(0, 100%);
+    -webkit-transition: -webkit-transform .3s;
+    transition: -webkit-transform .3s;
+    transition: transform .3s;
+    transition: transform .3s, -webkit-transform .3s;**/
     .weui-grid {
         width: 12.5%;
         background-color: #DEDEDE;
