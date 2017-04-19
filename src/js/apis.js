@@ -13,7 +13,13 @@ angular.module('ctApp').value('$apis', {
 		method: 'POST'
 	},
 	getCarShopList: {
-		url: '/car/list',
+		url: '/shop/list',
+		serviceName: "merchantWxService.getMerchantListForBespeakItem",
+		method: 'POST'
+	},
+	getOrderList: {
+		url: '/order/list',
+		serviceName: "bespeakWxService.myBespeakList",
 		method: 'POST'
 	},
 	getCode: {
