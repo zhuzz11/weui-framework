@@ -44,8 +44,8 @@
                         </a>
                         <div class="weui-flex">
                             <div class="weui-flex__item" ng-repeat="time in item.times">
-                                <div class="placeholder">{{time}}</div>
-                                <a href="javascript:;" class="weui-btn weui-btn_mini" ng-class="{'weui-btn_plain-disabled':item.disableIndex == $index,'weui-btn_plain-default':item.disableIndex == $index,'weui-btn_primary':item.disableIndex != $index}" ng-click="order(item,$index)">预定</a>
+                                <div class="placeholder">{{time.beginTime + "-" + time.endTime}}</div>
+                                <a href="javascript:;" class="weui-btn weui-btn_mini" ng-class="{'weui-btn_plain-disabled':time.surplus<=0,'weui-btn_plain-default':time.surplus<=0,'weui-btn_primary':time.surplus>0}" ng-click="order(item,time)">预定</a>
                             </div>
                         </div>
                     </div>

@@ -104,28 +104,61 @@ angular.module("ctApp")
             };
 
             var getCarShop = function(pos) {
+                $scope.carShopList = [];
                 $apis.getCarShopList.send({
                     body: {
                         latitude: pos ? pos.latitude : $scope.pos.latitude,
                         longitude: pos ? pos.longitude : $scope.pos.longitude,
-                        itemCode:type,
-                        userId:"?",
+                        itemCode: type,
+                        userId: "?",
                         date: $scope.pickdate.format("yyyy-MM-dd")
                     }
                 }).then(function(data) {
                     //获取4s店列表
+                    if (data && data.resultCode == "0000") {
+                        var ret = data.resultObject;
+                        for (var i = 0; i < ret.length; i++) {
+                            var item = ret[i];
+                            $scope.carShopList.push({
+                                merchantId: item.merchantId,
+                                name: item.name,
+                                address: item.address,
+                                distance: item.distance,
+                                icon: item.logoUrl,
+                                starGrade: item.starGrade,
+                                select: i == 0 ? true : false,
+                                times: item.timeRuleModelList
+                            });
+                        }
+                    }else{
+                        weui.toast(data.resultMsg, 3000);
+                    }
                 });
-                console.log("get");
-                $scope.carShopList = [];
+
+                //测试
                 for (var i = 0; i < 10; i++) {
+                    var timeRuleModelList = [{
+                        beginTime: "9:00",
+                        endTime: "12:00",
+                        surplus: 0
+                    }, {
+                        beginTime: "12:00",
+                        endTime: "15:00",
+                        surplus: 1
+                    }, {
+                        beginTime: "15:00",
+                        endTime: "17:30",
+                        surplus: 2
+                    }];
                     $scope.carShopList.push({
+                        merchantId: "12334",
                         name: "深圳宝源宝马4S店",
                         address: "深圳市福田区梅林街道北环大道7108号",
                         distance: "902m",
                         icon: "/images/none.jpg",
+                        starGrade: "",
                         select: i == 0 ? true : false,
-                        times: ["9:00-12:00", "12:00-15:00", "15:00-17:30"],
-                        disableIndex: 1 //不可预定的索引
+                        times: timeRuleModelList
                     });
                 }
             };
@@ -148,7 +181,7 @@ angular.module("ctApp")
                         enableHighAccuracy: true, // 是否获取高精度结果  
                         timeout: 5000, //超时,毫秒  
                         maximumAge: 0 //可以接受多少毫秒的缓存位置  
-                        // 详细说明 https://developer.mozilla.org/cn/docs/Web/API/PositionOptions  
+                            // 详细说明 https://developer.mozilla.org/cn/docs/Web/API/PositionOptions  
                     });
                 } else {
                     alert('抱歉！您的浏览器无法使用定位功能');
@@ -162,11 +195,11 @@ angular.module("ctApp")
                 item.select = true;
             };
 
-            $scope.order = function(item, index) {
-                if (index === item.disableIndex) {
+            $scope.order = function(item, time) {
+                if (time.surplus <= 0) {
                     return;
                 }
-                item.time = item.times[index];
+                item.time = time.beginTime + "-" + time.endTime;
                 item.date = $scope.pickdate.format("yyyy-MM-dd");
                 item.week = getWeek($scope.pickdate);
                 order.set(item);
