@@ -10,6 +10,7 @@ angular.module("ctApp")
             $scope.pickdate = new Date();
             $scope.oringinDate = new Date();
             $scope.carShopList = [];
+            $scope.pos = {};
             $scope.navButtonList = [{
                 label: "距离优先",
                 select: true
@@ -38,7 +39,7 @@ angular.module("ctApp")
                 getCarShop();
             };
 
-            var sameDate = function(d1,d2) {
+            var sameDate = function(d1, d2) {
                 if (d1.getFullYear() == d2.getFullYear() && d1.getMonth() == d2.getMonth() && d1.getDate() == d2.getDate()) {
                     return true;
                 }
@@ -56,7 +57,7 @@ angular.module("ctApp")
                     $scope.orderdate.push({
                         date: date,
                         datef: date.format("MM-dd"),
-                        week: sameDate(date,new Date()) ? "今天" : getWeek(date),
+                        week: sameDate(date, new Date()) ? "今天" : getWeek(date),
                         select: i === index ? true : false
                     });
                 }
@@ -85,7 +86,7 @@ angular.module("ctApp")
                     onConfirm: function(result) {
                         var date = new Date(result[0], result[1] - 1, result[2]);
                         var today = new Date();
-                        if(sameDate(date,$scope.oringinDate)){
+                        if (sameDate(date, $scope.oringinDate)) {
                             return;
                         }
                         $scope.oringinDate = date;
@@ -101,8 +102,13 @@ angular.module("ctApp")
                 });
             };
 
-            var getCarShop = function() {
-                $apis.getCarShpList.send().then(function(data) {
+            var getCarShop = function(pos) {
+                $apis.getCarShpList.send({
+                    body: {
+                        latitude: pos ? pos.latitude : $scope.pos.latitude,
+                        longitude: pos ? pos.longitude : $scope.pos.longitude
+                    }
+                }).then(function(data) {
                     //获取4s店列表
                 });
                 console.log("get");
@@ -117,8 +123,34 @@ angular.module("ctApp")
                         times: ["9:00-12:00", "12:00-15:00", "15:00-17:30"],
                         disableIndex: 1 //不可预定的索引
                     });
-                };
+                }
             };
+
+            var getLocation = function(callback) {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        // 成功回调函数，接受一个地理位置的对象作为参数。  
+                        // https://developer.mozilla.org/cn/docs/Web/API/Position 参数说明
+                        if (typeof callback === "function") {
+                            callback(pos.coords);
+                        }
+                        $scope.pos = pos.coords;
+                        //alert(pos.coords.latitude + '  ' + pos.coords.longitude);
+                    }, function(err) {
+                        // 错误的回调  
+                        alert("定位失败");
+                        // https://developer.mozilla.org/cn/docs/Web/API/PositionError 错误参数  
+                    }, {
+                        enableHighAccuracy: true, // 是否获取高精度结果  
+                        timeout: 5000, //超时,毫秒  
+                        maximumAge: 0 //可以接受多少毫秒的缓存位置  
+                        // 详细说明 https://developer.mozilla.org/cn/docs/Web/API/PositionOptions  
+                    });
+                } else {
+                    alert('抱歉！您的浏览器无法使用定位功能');
+                }
+            };
+
             $scope.choiceCarShop = function(item) {
                 angular.forEach($scope.carShopList, function(item, i) {
                     item.select = false;
@@ -138,6 +170,6 @@ angular.module("ctApp")
             };
 
             initDate(new Date());
-            getCarShop();
+            getLocation(getCarShop);
         }
     ]);
