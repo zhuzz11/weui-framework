@@ -24,9 +24,9 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
         });
 
     $stateProvider
-        .state('order', {
+        .state('shoplist', {
             cache: false,
-            url: '/shop/list',
+            url: '/shop/list/:type',
             title: "预约4S店",
             templateUrl: 'view/template/shop_list.html'
         });
@@ -47,7 +47,7 @@ angular.module("ctApp").config(["$stateProvider", "$urlRouterProvider", "$locati
     $stateProvider
         .state('memberDetail', {
             cache: false,
-            url: '/member/detail',
+            url: '/member/detail/:id',
             title: "会员资料",
             templateUrl: 'view/template/member_detail.html'
         });

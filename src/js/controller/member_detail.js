@@ -5,6 +5,7 @@ angular.module("ctApp")
 		"$apis",
 		function($scope, $state, $apis) {
 
+			var id = $state.params.id;
 			$scope.form = {
 				carNo: "",
 				mobile: ""
@@ -28,7 +29,8 @@ angular.module("ctApp")
 				$apis.userInfo.send({
 					isShowLoadding: false,
 					body: {
-						openid: ""
+						openid: "",
+						id:id
 					}
 				}).then(function() {
 					$scope.form = {

@@ -3,15 +3,16 @@
  */
 
 angular.module('ctApp').value('$apis', {
-	userBind:{
+	userBind: {
 		url: '/user/bind',
+		serviceName: "userWxService.bindingUser",
 		method: 'POST'
 	},
-	userInfo:{
+	userInfo: {
 		url: '/user/info',
 		method: 'POST'
 	},
-	getCarShpList: {
+	getCarShopList: {
 		url: '/car/list',
 		method: 'POST'
 	},

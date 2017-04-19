@@ -6,6 +6,7 @@ angular.module("ctApp")
         "$timeout",
         "order",
         function($scope, $state, $apis, $timeout, order) {
+            var type = $state.params.type;
             $scope.orderdate = [];
             $scope.pickdate = new Date();
             $scope.oringinDate = new Date();
@@ -103,10 +104,13 @@ angular.module("ctApp")
             };
 
             var getCarShop = function(pos) {
-                $apis.getCarShpList.send({
+                $apis.getCarShopList.send({
                     body: {
                         latitude: pos ? pos.latitude : $scope.pos.latitude,
-                        longitude: pos ? pos.longitude : $scope.pos.longitude
+                        longitude: pos ? pos.longitude : $scope.pos.longitude,
+                        itemCode:type,
+                        userId:"?",
+                        date: $scope.pickdate.format("yyyy-MM-dd")
                     }
                 }).then(function(data) {
                     //获取4s店列表
@@ -170,6 +174,7 @@ angular.module("ctApp")
             };
 
             initDate(new Date());
-            getLocation(getCarShop);
+            getCarShop();
+            //getLocation(getCarShop);
         }
     ]);
