@@ -4,26 +4,31 @@
 
 angular.module('ctApp').value('$apis', {
 	userBind: {
-		url: '/user/bind',
+		url: '/ct-proxy-api/wx/gateWay.do',
 		serviceName: "userWxService.bindingUser",
 		method: 'POST'
 	},
 	userInfo: {
-		url: '/user/info',
+		url: '/ct-proxy-api/wx/gateWay.do',
 		method: 'POST'
 	},
 	getCarShopList: {
-		url: '/shop/list',
+		url: '/ct-proxy-api/wx/gateWay.do',
 		serviceName: "merchantWxService.getMerchantListForBespeakItem",
 		method: 'POST'
 	},
 	getOrderList: {
-		url: '/order/list',
+		url: '/ct-proxy-api/wx/gateWay.do',
 		serviceName: "bespeakWxService.myBespeakList",
 		method: 'POST'
 	},
 	getCode: {
-		url: '/mobile/code',
+		url: '/ct-proxy-api/wx/gateWay.do',
+		method: 'POST'
+	},
+	getCarNoList: {
+		url: '/ct-proxy-api/wx/gateWay.do',
+		serviceName: "carWxService.myCarInfoList",
 		method: 'POST'
 	}
 });

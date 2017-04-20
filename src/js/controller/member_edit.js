@@ -104,7 +104,7 @@ angular.module("ctApp")
 					body: {
 						mobile: mobile,
 						carNo: carNo,
-						openId: "?"
+						openId: "OPENID-WF"
 					}
 				}).then(function(data) {
 					if(data && data.resultCode == "0000"){
@@ -121,14 +121,14 @@ angular.module("ctApp")
 				});
 
 				//测试代码
-				var loading = weui.loading('提交中...');
+				/*var loading = weui.loading('提交中...');
 				setTimeout(function() {
 					loading.hide();
 					weui.toast('提交成功', 3000);
 					$state.go("memberDetail",{
 							id:123456
 						});
-				}, 1500);
+				}, 1500);*/
 			};
 
 			var areas = ["京", "沪", "浙", "苏", "粤", "鲁", "晋", "冀", "豫", "川", "渝", "辽", "吉", "黑", "皖", "鄂", "湘", "赣", "闽", "陕", "甘", "宁", "蒙", "津", "贵", "云", "桂", "琼", "青", "新", "藏", "台"];

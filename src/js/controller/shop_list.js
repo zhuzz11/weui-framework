@@ -109,9 +109,9 @@ angular.module("ctApp")
                     body: {
                         latitude: pos ? pos.latitude : $scope.pos.latitude,
                         longitude: pos ? pos.longitude : $scope.pos.longitude,
-                        itemCode: type,
-                        userId: "?",
-                        date: $scope.pickdate.format("yyyy-MM-dd")
+                        itemCode: "01",
+                        userId: 10001,
+                        bespeakDate: $scope.pickdate.format("yyyy-MM-dd")
                     }
                 }).then(function(data) {
                     //获取4s店列表
@@ -131,7 +131,7 @@ angular.module("ctApp")
                             });
                         }
                     }else{
-                        weui.toast(data.resultMsg, 3000);
+                        weui.topTips(data.resultMsg, 3000);
                     }
                 });
 

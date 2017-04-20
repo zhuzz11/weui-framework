@@ -37,7 +37,7 @@ angular.module('ctApp').factory("apiRequest", [
                         } else {
 
                             if ((type === "string") || (type === "number")) {
-                                value = value.toString();
+                                value = value;
                             }
                             if (value === undefined || value === null) {
                                 value = "";
@@ -71,7 +71,8 @@ angular.module('ctApp').factory("apiRequest", [
                 ContentType: "application/json;charset=UTF-8",
                 headers:{
 
-                }
+                },
+                data:{}
             };
 
             if (varThis.method == "UPDATE") {
@@ -81,11 +82,13 @@ angular.module('ctApp').factory("apiRequest", [
                     //ContentType: "multipart/form-data"
                 };
             }
-
+            var data = null;
             if (body) {
-                req.data = formatArrayStr(body);
+                data = formatArrayStr(body);
             }
-
+            req.data.data = JSON.stringify(data);
+            req.data.timestamp = Date.parse(new Date()) / 1000;
+            req.data.serviceName = varThis.serviceName;
 
             showLoadding(isShowLoadding, loaddingTitle);
             if (varThis.method == "UPDATE") {

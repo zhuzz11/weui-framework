@@ -91,6 +91,19 @@ angular.module("ctApp")
             };
 
             var initCarNoList = function() {
+                $apis.getCarNoList.send({
+                    body:{
+
+                    }
+                }).then(function(data){
+                    if(data && data.resultCode == "0000"){
+                        
+                    }else{
+                        weui.toast(data.resultMsg, 3000);
+                    }
+                },function(){
+
+                });
                 for (var i = 0; i < 5; i++) {
                     $scope.carNoList.push({
                         isDefault: i === 0 ? true : false,

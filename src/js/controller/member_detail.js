@@ -34,14 +34,10 @@ angular.module("ctApp")
 					}
 				}).then(function() {
 					$scope.form = {
-						carNo: "粤B54321",
-						mobile: "18565767510"
+						carNo: "",
+						mobile: ""
 					};
 				}, function() {
-					$scope.form = {
-						carNo: "粤B12345",
-						mobile: "18565767510"
-					};
 				});
 			}();
 		}
