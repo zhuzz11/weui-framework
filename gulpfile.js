@@ -12,6 +12,7 @@ var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var uglify = require('gulp-uglify');//混淆js
 var concat = require('gulp-concat');//合并
+var htmlmin = require('gulp-htmlmin');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
 var pkg = require('./package.json');
@@ -75,9 +76,12 @@ gulp.task('build:css', function (){
 
 gulp.task('build:html', function (){
     gulp.src('src/*.html', option)
+        .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest(dist))
         .pipe(browserSync.reload({stream: true}));
     gulp.src('src/view/**/*', option)
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(htmlmin())
         .pipe(gulp.dest(dist))
         .pipe(browserSync.reload({stream: true}));
 });
@@ -85,7 +89,7 @@ gulp.task('build:html', function (){
 
 gulp.task('release', ['build:html','build:js','build:css','build:assets']);
 
-gulp.task('watch', ['release'], function () {
+gulp.task('watch', function () {
     gulp.watch('src/css/**/*', ['build:css']);
     gulp.watch('src/js/**/*.js', ['build:js']);
     gulp.watch('src/images/**/*', ['build:assets']);
