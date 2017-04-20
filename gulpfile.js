@@ -10,6 +10,8 @@ var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
+var uglify = require('gulp-uglify');//混淆js
+var concat = require('gulp-concat');//合并
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
 var pkg = require('./package.json');
@@ -40,8 +42,15 @@ gulp.task('build:assets', function (){
 });
 
 gulp.task('build:js', function (){
-    gulp.src('src/js/**/*', option)
+    gulp.src('src/js/lib/*', option)
         .pipe(gulp.dest(dist))
+        .pipe(browserSync.reload({stream: true}));
+    gulp.src(['src/js/app.js','src/js/**/*','!src/js/lib/*'], option)
+        .pipe(uglify().on('error', function (e) {
+            console.log(e);
+        }))
+        .pipe(concat("all.min.js"))
+        .pipe(gulp.dest(dist + "/js/"))
         .pipe(browserSync.reload({stream: true}));
 });
 
@@ -55,11 +64,12 @@ gulp.task('build:css', function (){
             this.emit('end');
         }))
         .pipe(postcss([autoprefixer(['iOS >= 7', 'Android >= 4.1'])]))
-        /*.pipe(nano({//生成环境打开
+        .pipe(nano({//生成环境打开
             zindex: false,
             autoprefixer: false
-        }))*/
-        .pipe(gulp.dest(dist))
+        }))
+        .pipe(concat("all.min.css"))
+        .pipe(gulp.dest(dist + "/css/"))
         .pipe(browserSync.reload({stream: true}));
 });
 
@@ -96,7 +106,7 @@ gulp.task('server', function () {
             }
         },
         port: yargs.p,
-        startPath: '/'
+        startPath: '/index.html'
     });
 });
 

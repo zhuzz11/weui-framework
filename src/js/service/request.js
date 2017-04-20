@@ -1,4 +1,4 @@
-"use strict"
+
 angular.module('ctApp').factory("apiRequest", [
     "$q",
     "$http",

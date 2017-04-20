@@ -23,7 +23,7 @@ angular.module("ctApp")
 								id: item.bespeakId,
 								bespeakNo: item.bespeakNo,
 								name: item.merchantName,
-								shortName: item.merchantShortName
+								shortName: item.merchantShortName,
 								address: item.merchantAddress,
 								state: item.bespeakState,
 								date: item.bespeakDate,
