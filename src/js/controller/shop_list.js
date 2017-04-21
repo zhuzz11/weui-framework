@@ -11,7 +11,7 @@ angular.module("ctApp")
             $scope.pickdate = new Date();
             $scope.oringinDate = new Date();
             $scope.carShopList = [];
-            $scope.pos = {};
+            $scope.pos = null;
             $scope.navButtonList = [{
                 label: "距离优先",
                 select: true
@@ -28,7 +28,7 @@ angular.module("ctApp")
                     item.select = false;
                 });
                 item.select = true;
-                getCarShop();
+                getLocation(getCarShop);
             };
 
             $scope.choiceDate = function(item) {
@@ -37,7 +37,10 @@ angular.module("ctApp")
                 });
                 item.select = true;
                 $scope.pickdate = item.date;
-                getCarShop();
+                $timeout(function(){
+                    getLocation(getCarShop);
+                },0);
+                
             };
 
             var sameDate = function(d1, d2) {
@@ -107,8 +110,8 @@ angular.module("ctApp")
                 $scope.carShopList = [];
                 $apis.getCarShopList.send({
                     body: {
-                        latitude: pos ? pos.latitude : $scope.pos.latitude,
-                        longitude: pos ? pos.longitude : $scope.pos.longitude,
+                        latitude: pos ? pos.latitude : null,
+                        longitude: pos ? pos.longitude : null,
                         itemCode: "01",
                         userId: 10001,
                         bespeakDate: $scope.pickdate.format("yyyy-MM-dd")
@@ -130,13 +133,14 @@ angular.module("ctApp")
                                 times: item.timeRuleModelList
                             });
                         }
-                    }else{
-                        weui.topTips(data.resultMsg, 3000);
+                    } else {
+                        weui.topTips(data.resultMsg || "服务异常", 3000);
                     }
                 });
 
                 //测试
-                for (var i = 0; i < 10; i++) {
+
+                /*for (var i = 0; i < 10; i++) {
                     var timeRuleModelList = [{
                         beginTime: "9:00",
                         endTime: "12:00",
@@ -160,22 +164,34 @@ angular.module("ctApp")
                         select: i == 0 ? true : false,
                         times: timeRuleModelList
                     });
-                }
+                }*/
             };
 
-            var getLocation = function(callback) {
+            var getLocation = function(cb) {
+                if (!$scope.pos) {
+                    if (angular.isFunction(cb)) {
+                        cb($scope.pos);
+                    }
+                    return;
+                }
+                var loading = weui.loading("loading...");
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(pos) {
                         // 成功回调函数，接受一个地理位置的对象作为参数。  
                         // https://developer.mozilla.org/cn/docs/Web/API/Position 参数说明
-                        if (typeof callback === "function") {
-                            callback(pos.coords);
-                        }
                         $scope.pos = pos.coords;
+                        if (angular.isFunction(cb)) {
+                            cb($scope.pos);
+                        }
+
                         //alert(pos.coords.latitude + '  ' + pos.coords.longitude);
                     }, function(err) {
-                        // 错误的回调  
-                        alert("定位失败");
+                        // 错误的回调
+                        if (angular.isFunction(cb)) {
+                            cb($scope.pos);
+                        }
+
+                        //alert("定位失败");
                         // https://developer.mozilla.org/cn/docs/Web/API/PositionError 错误参数  
                     }, {
                         enableHighAccuracy: true, // 是否获取高精度结果  
@@ -184,7 +200,10 @@ angular.module("ctApp")
                             // 详细说明 https://developer.mozilla.org/cn/docs/Web/API/PositionOptions  
                     });
                 } else {
-                    alert('抱歉！您的浏览器无法使用定位功能');
+                    if (angular.isFunction(cb)) {
+                        cb($scope.pos);
+                    }
+                    //alert('抱歉！您的浏览器无法使用定位功能');
                 }
             };
 
@@ -207,7 +226,5 @@ angular.module("ctApp")
             };
 
             initDate(new Date());
-            getCarShop();
-            //getLocation(getCarShop);
         }
     ]);
